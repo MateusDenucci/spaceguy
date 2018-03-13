@@ -1,10 +1,18 @@
 extends RigidBody2D
 
-
+var canMove = true #necessary
 
 func _ready():
 	pass
 
+func _on_Right_input_event( viewport, event, shape_idx ):
+	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed and canMove:
+		move_right()
+
+
+func _on_Left_input_event( viewport, event, shape_idx ):
+	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed and canMove:
+		move_left()
 
 func move_right():
 	var  constant = get_parent().get_node("LowerTeeth").get_pos().y - 228
@@ -45,11 +53,4 @@ func move_left():
 		self.set_pos(Vector2(600,get_parent().get_node("LowerTeeth/LowTooth7").get_pos().y + constant))
 
 
-func _on_Right_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed:
-		move_right()
 
-
-func _on_Left_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed:
-		move_left()

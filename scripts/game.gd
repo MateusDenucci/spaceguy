@@ -34,7 +34,6 @@ var sprite_player_size = 155
 
 func _ready():
 	randomize()
-	#lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 400))
 	animation.play("lowerteetgoingup")
 	random_height()
 	set_process(true)
@@ -50,10 +49,6 @@ func random_height():
 		var height_top = (total_space - height_low) - 300
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,-height_low))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
-	
-	#var i = 4
-	#get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,0))
-	#get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,-300))
 	var safe_already = []
 	var safe_tooth = int(rand_range(0,9))
 	safe_already.append(safe_tooth)
@@ -70,13 +65,11 @@ func random_height():
 			get_node("TopTeeth/TopTooth"+str(safe_tooth)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().x,get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().y-(sprite_player_size/2)))
 			
 func stop_go_down():
-	#print("stop!")
 	player.canMove = false
 	goDown = false
 	timerclosemouth.start()
 
 func _on_TimerCloseMouth_timeout():
-	print("timeout")
 	timerclosemouth.stop()
 	lowerteeth.set_pos(Vector2(0,1430))
 	animation.seek(0,true)
@@ -84,7 +77,6 @@ func _on_TimerCloseMouth_timeout():
 	
 	player.canMove = true
 	player.set_pos(Vector2(360,580))
-	#animation.play("lowerteethgoingdown")
 	random_height()
 	topteeth.set_pos(Vector2(0,0))
 	goDown = true

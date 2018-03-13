@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -19,24 +19,23 @@
 [ext_resource path="res://assets/Player/Idle__008.png" type="Texture" id=17]
 [ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=18]
 [ext_resource path="res://assets/novo_correto.png" type="Texture" id=19]
-[ext_resource path="res://assets/life.png" type="Texture" id=20]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 100.223
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 99.7774
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 35.1967, 73.2209 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
@@ -45,9 +44,8 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 
-resource/name = "lowerteetgoingup"
 length = 0.3
 loop = false
 step = 0.1
@@ -62,9 +60,8 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1430 ), Vector2( 0, 1130 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 
-resource/name = "lowerteethgoingdown"
 length = 0.3
 loop = false
 step = 0.1
@@ -182,12 +179,14 @@ texture = ExtResource( 5 )
 
 [node name="Control" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="Right" type="Area2D" parent="Control"]
 
 editor/display_folded = true
 transform/pos = Vector2( 605.524, 1165.17 )
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -201,7 +200,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Right"]
 
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
@@ -210,7 +209,7 @@ _update_shape_index = 0
 editor/display_folded = true
 transform/pos = Vector2( 100.422, 1163.22 )
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -224,15 +223,16 @@ texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Left"]
 
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.58344, 4.27313 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -258,14 +258,14 @@ script/script = ExtResource( 8 )
 
 transform/pos = Vector2( 0, 5 )
 transform/scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 2 )
+frames = SubResource( 4 )
 animation = "default"
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
 transform/pos = Vector2( 2.58344, 4.27313 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -281,33 +281,12 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/lowerteetgoingup = SubResource( 3 )
-anims/lowerteethgoingdown = SubResource( 4 )
+anims/lowerteetgoingup = SubResource( 5 )
+anims/lowerteethgoingdown = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
-
-[node name="Lifes" type="Node2D" parent="."]
-
-editor/display_folded = true
-transform/pos = Vector2( 482.347, 52.7567 )
-transform/scale = Vector2( 0.3, 0.3 )
-
-[node name="Life0" type="Sprite" parent="Lifes"]
-
-transform/pos = Vector2( 180, 25 )
-texture = ExtResource( 20 )
-
-[node name="Life1" type="Sprite" parent="Lifes"]
-
-transform/pos = Vector2( 430, 25 )
-texture = ExtResource( 20 )
-
-[node name="life2" type="Sprite" parent="Lifes"]
-
-transform/pos = Vector2( 680, 25 )
-texture = ExtResource( 20 )
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 
