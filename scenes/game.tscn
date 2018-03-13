@@ -88,6 +88,7 @@ centered = false
 
 [node name="LowerTeeth" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 1130 )
 
 [node name="LowTooth0" parent="LowerTeeth" instance=ExtResource( 3 )]
@@ -193,11 +194,11 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="Sprite" type="Sprite" parent="Control/Right"]
+[node name="BtnRight" type="Sprite" parent="Control/Right"]
 
 texture = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Right"]
+[node name="ShapeRight" type="CollisionShape2D" parent="Control/Right"]
 
 shape = SubResource( 1 )
 trigger = false
@@ -216,11 +217,11 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="Sprite" type="Sprite" parent="Control/Left"]
+[node name="BtnLeft" type="Sprite" parent="Control/Left"]
 
 texture = ExtResource( 7 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Left"]
+[node name="ShapeLeft" type="CollisionShape2D" parent="Control/Left"]
 
 shape = SubResource( 2 )
 trigger = false
@@ -235,7 +236,7 @@ shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.58344, 4.27313 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 0
+mode = 2
 mass = 1.0
 friction = 0.0
 bounce = 0.0

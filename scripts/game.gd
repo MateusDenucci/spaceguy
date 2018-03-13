@@ -6,31 +6,21 @@ onready var animation = get_node("Animation")
 
 
 onready var lowerteeth = get_node("LowerTeeth")
-onready var lowtooth0 = get_node("LowerTeeth/LowTooth0")
-onready var lowtooth1 = get_node("LowerTeeth/LowTooth1")
-onready var lowtooth2 = get_node("LowerTeeth/LowTooth2")
-onready var lowtooth3 = get_node("LowerTeeth/LowTooth3")
-onready var lowtooth4 = get_node("LowerTeeth/LowTooth4")
-onready var lowtooth5 = get_node("LowerTeeth/LowTooth5")
-onready var lowtooth6 = get_node("LowerTeeth/LowTooth6")
-onready var lowtooth7 = get_node("LowerTeeth/LowTooth7")
-onready var lowtooth8 = get_node("LowerTeeth/LowTooth8")
-
 onready var topteeth = get_node("TopTeeth")
-onready var toptooth0 = get_node("TopTeeth/TopTooth0")
-onready var toptooth1 = get_node("TopTeeth/TopTooth1")
-onready var toptooth2 = get_node("TopTeeth/TopTooth2")
-onready var toptooth3 = get_node("TopTeeth/TopTooth3")
-onready var toptooth4 = get_node("TopTeeth/TopTooth4")
-onready var toptooth5 = get_node("TopTeeth/TopTooth5")
-onready var toptooth6 = get_node("TopTeeth/TopTooth6")
-onready var toptooth7 = get_node("TopTeeth/TopTooth7")
-onready var toptooth8 = get_node("TopTeeth/TopTooth8")
-
 
 var goDown = true
 var avaible_spaces = 3
 var sprite_player_size = 155
+
+var initialVibration = 1.3
+var vibration = 0
+var alreadyVibrated = false
+
+var closeMouth = false
+
+var vel = 100
+
+var offsetYTopTeeth = 200
 
 func _ready():
 	randomize()
@@ -38,9 +28,30 @@ func _ready():
 	random_height()
 	set_process(true)
 	
+	topteeth.set_pos(Vector2(0,offsetYTopTeeth))
+	vibrate()
+	
+func vibrate():
+	vibration = initialVibration	
+	
 func _process(delta):
 	if(goDown):
-		topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + delta+2))
+		#### Vibration
+		if not alreadyVibrated:
+			if vibration > 0:
+				#topteeth.set_pos(Vector2(cos(rad2deg(vibration)), sin(rad2deg(vibration))))
+				#Se for vibrar em y, usar sen
+				topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
+				vibration -= delta
+			else:
+				topteeth.set_pos(Vector2(0,offsetYTopTeeth))
+				closeMouth = true		
+				alreadyVibrated = true
+		
+		### Close mouth
+		if closeMouth:
+			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + vel*delta+2))
+		
 
 func random_height():
 	var total_space = 350
@@ -49,6 +60,7 @@ func random_height():
 		var height_top = (total_space - height_low) - 300
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,-height_low))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
+
 	var safe_already = []
 	var safe_tooth = int(rand_range(0,9))
 	safe_already.append(safe_tooth)
@@ -78,6 +90,8 @@ func _on_TimerCloseMouth_timeout():
 	player.canMove = true
 	player.set_pos(Vector2(360,580))
 	random_height()
-	topteeth.set_pos(Vector2(0,0))
+	topteeth.set_pos(Vector2(0,300))	
+	vibrate()
+	alreadyVibrated = false
 	goDown = true
 	

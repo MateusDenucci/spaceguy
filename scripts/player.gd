@@ -6,12 +6,12 @@ func _ready():
 	pass
 
 func _on_Right_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed and canMove:
+	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):
 		move_right()
 
 
 func _on_Left_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH) and event.pressed and canMove:
+	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):
 		move_left()
 
 func move_right():
