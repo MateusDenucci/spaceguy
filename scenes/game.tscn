@@ -3,22 +3,22 @@
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/tooth.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/mouth.png" type="Texture" id=4]
-[ext_resource path="res://assets/top.png" type="Texture" id=5]
+[ext_resource path="res://assets/mouth_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/top_1.png" type="Texture" id=5]
 [ext_resource path="res://assets/btn_right.png" type="Texture" id=6]
 [ext_resource path="res://assets/btn_left.png" type="Texture" id=7]
 [ext_resource path="res://scripts/player.gd" type="Script" id=8]
-[ext_resource path="res://assets/Player/Idle__000.png" type="Texture" id=9]
-[ext_resource path="res://assets/Player/Idle__001.png" type="Texture" id=10]
-[ext_resource path="res://assets/Player/Idle__002.png" type="Texture" id=11]
-[ext_resource path="res://assets/Player/Idle__003.png" type="Texture" id=12]
-[ext_resource path="res://assets/Player/Idle__004.png" type="Texture" id=13]
-[ext_resource path="res://assets/Player/Idle__005.png" type="Texture" id=14]
-[ext_resource path="res://assets/Player/Idle__006.png" type="Texture" id=15]
-[ext_resource path="res://assets/Player/Idle__007.png" type="Texture" id=16]
-[ext_resource path="res://assets/Player/Idle__008.png" type="Texture" id=17]
-[ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=18]
-[ext_resource path="res://assets/novo_correto.png" type="Texture" id=19]
+[ext_resource path="res://assets/Player/Idle__001.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/Idle__002.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player/Idle__003.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/Idle__004.png" type="Texture" id=12]
+[ext_resource path="res://assets/Player/Idle__005.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/Idle__006.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/Idle__007.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/Idle__008.png" type="Texture" id=16]
+[ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=17]
+[ext_resource path="res://assets/novo_correto.png" type="Texture" id=18]
+[ext_resource path="res://assets/player.png" type="Texture" id=19]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -38,7 +38,7 @@ extents = Vector2( 35.1967, 73.2209 )
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "default",
 "speed": 13.0
@@ -88,7 +88,6 @@ centered = false
 
 [node name="LowerTeeth" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 1130 )
 
 [node name="LowTooth0" parent="LowerTeeth" instance=ExtResource( 3 )]
@@ -229,7 +228,6 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -256,11 +254,12 @@ script/script = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, 5 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 4 )
 animation = "default"
-frame = 10
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
@@ -268,6 +267,12 @@ transform/pos = Vector2( 2.58344, 4.27313 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Player"]
+
+transform/pos = Vector2( -0.541975, -2.76767 )
+transform/scale = Vector2( 0.435292, 0.435292 )
+texture = ExtResource( 19 )
 
 [node name="TimerCloseMouth" type="Timer" parent="."]
 
