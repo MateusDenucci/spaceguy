@@ -1,0 +1,318 @@
+[gd_scene load_steps=27 format=1]
+
+[ext_resource path="res://scripts/game.gd" type="Script" id=1]
+[ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
+[ext_resource path="res://scenes/tooth.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/mouth.png" type="Texture" id=4]
+[ext_resource path="res://assets/top.png" type="Texture" id=5]
+[ext_resource path="res://assets/btn_right.png" type="Texture" id=6]
+[ext_resource path="res://assets/btn_left.png" type="Texture" id=7]
+[ext_resource path="res://scripts/player.gd" type="Script" id=8]
+[ext_resource path="res://assets/Player/Idle__000.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/Idle__001.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player/Idle__002.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/Idle__003.png" type="Texture" id=12]
+[ext_resource path="res://assets/Player/Idle__004.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/Idle__005.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/Idle__006.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/Idle__007.png" type="Texture" id=16]
+[ext_resource path="res://assets/Player/Idle__008.png" type="Texture" id=17]
+[ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=18]
+[ext_resource path="res://assets/novo_correto.png" type="Texture" id=19]
+[ext_resource path="res://assets/life.png" type="Texture" id=20]
+
+[sub_resource type="CircleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 100.223
+
+[sub_resource type="CircleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 99.7774
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 35.1967, 73.2209 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 13.0
+} ]
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "lowerteetgoingup"
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("LowerTeeth:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1430 ), Vector2( 0, 1130 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "lowerteethgoingdown"
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("LowerTeeth:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
+}
+
+[node name="Game" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+
+transform/scale = Vector2( 1.32727, 1.70813 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="LowerTeeth" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 1130 )
+
+[node name="LowTooth0" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 40, 0 )
+
+[node name="LowTooth1" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 120, 0 )
+
+[node name="LowTooth2" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 200, 0 )
+
+[node name="LowTooth3" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 280, 0 )
+
+[node name="LowTooth4" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 360, 0 )
+
+[node name="LowTooth5" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 440, 0 )
+
+[node name="LowTooth6" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 520, 0 )
+
+[node name="LowTooth7" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 600, 0 )
+
+[node name="LowTooth8" parent="LowerTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 680, 0 )
+
+[node name="Sprite" type="Sprite" parent="LowerTeeth"]
+
+transform/pos = Vector2( 360, 0 )
+texture = ExtResource( 4 )
+
+[node name="TopTeeth" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="TopTooth0" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 40, 0 )
+
+[node name="TopTooth1" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 120, 0 )
+
+[node name="TopTooth2" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 200, 0 )
+
+[node name="TopTooth3" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 280, 0 )
+
+[node name="TopTooth4" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 360, 0 )
+
+[node name="TopTooth5" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 440, 0 )
+
+[node name="TopTooth6" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 520, 0 )
+
+[node name="TopTooth7" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 600, 0 )
+
+[node name="TopTooth8" parent="TopTeeth" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 680, 0 )
+
+[node name="Sprite" type="Sprite" parent="TopTeeth"]
+
+transform/pos = Vector2( 346.513, -332 )
+texture = ExtResource( 5 )
+
+[node name="Control" type="Node2D" parent="."]
+
+[node name="Right" type="Area2D" parent="Control"]
+
+editor/display_folded = true
+transform/pos = Vector2( 605.524, 1165.17 )
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="Sprite" type="Sprite" parent="Control/Right"]
+
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Right"]
+
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Left" type="Area2D" parent="Control"]
+
+editor/display_folded = true
+transform/pos = Vector2( 100.422, 1163.22 )
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="Sprite" type="Sprite" parent="Control/Left"]
+
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Left"]
+
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Player" type="RigidBody2D" parent="."]
+
+transform/pos = Vector2( 360, 700 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.58344, 4.27313 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 0.0
+bounce = 0.0
+gravity_scale = 20.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+
+transform/pos = Vector2( 0, 5 )
+transform/scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+transform/pos = Vector2( 2.58344, 4.27313 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="TimerCloseMouth" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/lowerteetgoingup = SubResource( 3 )
+anims/lowerteethgoingdown = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Lifes" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 482.347, 52.7567 )
+transform/scale = Vector2( 0.3, 0.3 )
+
+[node name="Life0" type="Sprite" parent="Lifes"]
+
+transform/pos = Vector2( 180, 25 )
+texture = ExtResource( 20 )
+
+[node name="Life1" type="Sprite" parent="Lifes"]
+
+transform/pos = Vector2( 430, 25 )
+texture = ExtResource( 20 )
+
+[node name="life2" type="Sprite" parent="Lifes"]
+
+transform/pos = Vector2( 680, 25 )
+texture = ExtResource( 20 )
+
+[connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
+
+[connection signal="input_event" from="Control/Left" to="Player" method="_on_Left_input_event"]
+
+[connection signal="timeout" from="TimerCloseMouth" to="." method="_on_TimerCloseMouth_timeout"]
+
+
