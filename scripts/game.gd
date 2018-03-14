@@ -3,14 +3,15 @@ extends Node2D
 onready var player = get_node("Player")
 onready var timerclosemouth = get_node("TimerCloseMouth")
 onready var animation = get_node("Animation")
-
-
+onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
+
 
 var goDown = true
 var avaible_spaces = 3
 var sprite_player_size = 155
+var score = 0
 
 var initialVibration = 1.3
 var vibration = 0
@@ -23,6 +24,7 @@ var vel = 100
 var offsetYTopTeeth = 200
 
 func _ready():
+
 	randomize()
 	animation.play("lowerteetgoingup")
 	random_height()
@@ -58,7 +60,7 @@ func random_height():
 	for i in range(0,9):
 		var height_low = int(rand_range((total_space - 300),300))
 		var height_top = (total_space - height_low) - 300
-		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,-height_low))
+		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
 	var safe_already = []
@@ -68,7 +70,6 @@ func random_height():
 		var safe_tooth = int(rand_range(0,9))
 		if(safe_already.has(safe_tooth) == false):
 			safe_already.append(safe_tooth)
-		
 	for safe_tooth in safe_already:
 		if( get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y <= -180 ):
 			get_node("LowerTeeth/LowTooth"+str(safe_tooth)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().x,get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y+sprite_player_size))
@@ -86,7 +87,7 @@ func _on_TimerCloseMouth_timeout():
 	lowerteeth.set_pos(Vector2(0,1430))
 	animation.seek(0,true)
 	animation.play("lowerteetgoingup")
-	
+	score_increment()
 	player.canMove = true
 	player.set_pos(Vector2(360,580))
 	random_height()
@@ -95,3 +96,6 @@ func _on_TimerCloseMouth_timeout():
 	alreadyVibrated = false
 	goDown = true
 	
+func score_increment():
+	score += 1
+	scoreboard.set_text(str(score))

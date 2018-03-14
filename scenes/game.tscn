@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=17]
 [ext_resource path="res://assets/novo_correto.png" type="Texture" id=18]
 [ext_resource path="res://assets/player.png" type="Texture" id=19]
+[ext_resource path="res://assets/font_green_160.fnt" type="BitmapFont" id=20]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -229,6 +230,7 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -293,6 +295,34 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="ControlScore" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="ScoreBoard" type="Label" parent="ControlScore"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 14.0
+custom_fonts/font = ExtResource( 20 )
+custom_colors/font_color = Color( 0.133333, 0.545098, 0.133333, 1 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 

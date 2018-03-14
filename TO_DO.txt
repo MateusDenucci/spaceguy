@@ -1,0 +1,4 @@
+Corrigir o esquema de pontuacao
+game over
+tela de abertura
+dificultar o jogo
