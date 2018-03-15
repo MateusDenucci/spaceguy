@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=38 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -19,7 +19,16 @@
 [ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=17]
 [ext_resource path="res://assets/novo_correto.png" type="Texture" id=18]
 [ext_resource path="res://assets/player.png" type="Texture" id=19]
-[ext_resource path="res://assets/font_green_160.fnt" type="BitmapFont" id=20]
+[ext_resource path="res://assets/blood.png" type="Texture" id=20]
+[ext_resource path="res://assets/font_green_160.fnt" type="BitmapFont" id=21]
+[ext_resource path="res://assets/angel/angel1.png" type="Texture" id=22]
+[ext_resource path="res://assets/angel/angel2.png" type="Texture" id=23]
+[ext_resource path="res://assets/angel/angel3.png" type="Texture" id=24]
+[ext_resource path="res://assets/angel/angel4.png" type="Texture" id=25]
+[ext_resource path="res://assets/angel/angel5.png" type="Texture" id=26]
+[ext_resource path="res://assets/angel/angel7.png" type="Texture" id=27]
+[ext_resource path="res://assets/angel/angel6.png" type="Texture" id=28]
+[ext_resource path="res://assets/angel/angel8.png" type="Texture" id=29]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -34,7 +43,7 @@ radius = 99.7774
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 35.1967, 73.2209 )
+extents = Vector2( 35.1967, 73.1418 )
 
 [sub_resource type="SpriteFrames" id=4]
 
@@ -44,6 +53,33 @@ animations = [ {
 "name": "default",
 "speed": 13.0
 } ]
+
+[sub_resource type="Animation" id=8]
+
+resource/name = "die"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ), ExtResource( 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Sprite:transform/scale")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.435292, 0.435292 ), Vector2( 0.15, 0.15 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 
@@ -76,6 +112,15 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
 }
+
+[sub_resource type="SpriteFrames" id=7]
+
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
 
 [node name="Game" type="Node2D"]
 
@@ -230,11 +275,10 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.58344, 4.27313 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 1.84836, 3.75732 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -266,7 +310,7 @@ frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
-transform/pos = Vector2( 2.58344, 4.27313 )
+transform/pos = Vector2( 1.84836, 3.75732 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
@@ -274,7 +318,7 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( -0.541975, -2.76767 )
-transform/scale = Vector2( 0.435292, 0.435292 )
+transform/scale = Vector2( 0.43, 0.43 )
 texture = ExtResource( 19 )
 
 [node name="TimerCloseMouth" type="Timer" parent="."]
@@ -289,6 +333,7 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/die = SubResource( 8 )
 anims/lowerteetgoingup = SubResource( 5 )
 anims/lowerteethgoingdown = SubResource( 6 )
 playback/active = true
@@ -317,12 +362,20 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 14.0
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 0.133333, 0.545098, 0.133333, 1 )
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 400.818, 441.995 )
+frames = SubResource( 7 )
+animation = "default"
+playing = true
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 
