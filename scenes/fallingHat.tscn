@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://assets/life.png" type="Texture" id=1]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": Vector2Array( 0, 0, 0, 0, 0.195801, -0.147766, 0, 0, 0, 0, 717.885, 1.90277 )
+}
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Sprite
+
+var sent 	  = 1
+var sentAngle = 1
+
+var downVel 	= 100
+var angularVel 	= 10
+
+var maxAplitude = 30
+
+var curva
+
+func _ready():
+	set_fixed_process(true)
+	curva = get_parent().get_parent()
+	
+func _fixed_process(delta):
+	
+	curva.set_pos(curva.get_pos() + Vector2(0, delta*downVel))	
+	
+	var newOffset = get_parent().get_unit_offset() + delta*sent*.3
+	if sent == 1 and newOffset >= .95:
+		sent = -1
+		get_parent().set_unit_offset(0.95)
+	elif sent == -1 and newOffset <= .05:
+		sent = 1
+		get_parent().set_unit_offset(0.05)
+	else:
+		get_parent().set_unit_offset(newOffset)
+		
+	var newAngle = get(\"transform/rot\") + (angularVel)*delta*sentAngle
+	print(newAngle)
+	
+	set(\"transform/rot\", newAngle)
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+"
+
+[node name="Node" type="Node"]
+
+[node name="Hat" type="Path2D" parent="."]
+
+curve = SubResource( 1 )
+
+[node name="Follow" type="PathFollow2D" parent="Hat"]
+
+transform/pos = Vector2( 0.195801, -0.147766 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = false
+cubic_interp = true
+loop = false
+lookahead = 4.0
+
+[node name="Sprite" type="Sprite" parent="Hat/Follow"]
+
+transform/rot = -30.0
+texture = ExtResource( 1 )
+script/script = SubResource( 2 )
+
+

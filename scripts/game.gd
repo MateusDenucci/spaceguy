@@ -7,9 +7,11 @@ onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
 
+var vel
+var initialVel = 100
 
-var goDown = true
-var avaible_spaces = 3
+var goDown = false
+var avaible_spaces
 var sprite_player_size = 155
 var score = 0
 
@@ -19,19 +21,12 @@ var alreadyVibrated = false
 
 var closeMouth = false
 
-var vel = 100
-
 var offsetYTopTeeth = 200
 
 func _ready():
-
 	randomize()
-	animation.play("lowerteetgoingup")
-	random_height()
-	set_process(true)
-	
-	topteeth.set_pos(Vector2(0,offsetYTopTeeth))
-	vibrate()
+	set_process(true)	
+	play()	
 	
 func vibrate():
 	vibration = initialVibration	
@@ -83,11 +78,27 @@ func stop_go_down():
 	timerclosemouth.start()
 
 func _on_TimerCloseMouth_timeout():
+	play()
+	
+func get_avaible_spaces():
+	var spaces
+	if score <= 10:
+		spaces = int(rand_range(0,3))
+	elif score > 10 and score <= 20:
+		spaces = int(rand_range(0,2))
+	else:
+		spaces = 1
+	return spaces
+	
+func play():
 	timerclosemouth.stop()
 	lowerteeth.set_pos(Vector2(0,1430))
 	animation.seek(0,true)
+	avaible_spaces = get_avaible_spaces()
+	
 	animation.play("lowerteetgoingup")
-	score_increment()
+	score_increment()	
+	vibrate()
 	player.canMove = true
 	player.set_pos(Vector2(360,580))
 	random_height()
@@ -95,6 +106,8 @@ func _on_TimerCloseMouth_timeout():
 	vibrate()
 	alreadyVibrated = false
 	goDown = true
+	vel = log(250*score + 2.72)*initialVel
+	print(vel)
 	
 func score_increment():
 	score += 1

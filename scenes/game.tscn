@@ -180,12 +180,11 @@ texture = ExtResource( 5 )
 
 [node name="Control" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Right" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 605.524, 1165.17 )
+transform/pos = Vector2( 570, 1130 )
+transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -208,7 +207,8 @@ _update_shape_index = 0
 [node name="Left" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 100.422, 1163.22 )
+transform/pos = Vector2( 150, 1130 )
+transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
