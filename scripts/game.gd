@@ -12,7 +12,7 @@ var initialVel = 100
 
 var goDown = false
 var avaible_spaces
-var sprite_player_size = 155
+var sprite_player_size = 180
 var score = 0
 
 var initialVibration = 1.3
@@ -68,9 +68,11 @@ func random_height():
 	for safe_tooth in safe_already:
 		if( get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y <= -180 ):
 			get_node("LowerTeeth/LowTooth"+str(safe_tooth)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().x,get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y+sprite_player_size))
-		else:
+		elif( get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y <= -sprite_player_size/2 ):
 			get_node("LowerTeeth/LowTooth"+str(safe_tooth)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().x,get_node("LowerTeeth/LowTooth"+str(safe_tooth)).get_pos().y+(sprite_player_size/2)))
 			get_node("TopTeeth/TopTooth"+str(safe_tooth)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().x,get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().y-(sprite_player_size/2)))
+		else:
+			get_node("TopTeeth/TopTooth"+str(safe_tooth)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().x,get_node("TopTeeth/TopTooth"+str(safe_tooth)).get_pos().y-(sprite_player_size)))
 			
 func stop_go_down():
 	player.canMove = false
@@ -107,8 +109,9 @@ func play():
 	alreadyVibrated = false
 	goDown = true
 	vel = log(250*score + 2.72)*initialVel
-	print(vel)
+
 	
 func score_increment():
 	score += 1
 	scoreboard.set_text(str(score))
+	

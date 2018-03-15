@@ -4,14 +4,13 @@ var canMove = true #necessary
 
 func _ready():
 	pass
-
+	
 func _on_Right_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed) and canMove:
+	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):
 		move_right()
 
-
 func _on_Left_input_event( viewport, event, shape_idx ):
-	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed) and canMove:
+	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):
 		move_left()
 
 func move_right():
@@ -51,7 +50,7 @@ func move_left():
 		self.set_pos(Vector2(520,get_parent().get_node("LowerTeeth/LowTooth6").get_pos().y + constant))
 	elif (self.get_pos().x == 680) and has_space(7):
 		self.set_pos(Vector2(600,get_parent().get_node("LowerTeeth/LowTooth7").get_pos().y + constant))
-
+#
 func has_space(tooth):
 	var low = get_parent().get_node("LowerTeeth/LowTooth"+str(tooth)).get_pos().y
 	var top = get_parent().get_node("TopTeeth/TopTooth"+str(tooth)).get_pos().y + get_parent().get_node("TopTeeth").get_pos().y

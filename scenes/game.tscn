@@ -54,7 +54,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 
 resource/name = "die"
 length = 0.2
@@ -81,7 +81,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.435292, 0.435292 ), Vector2( 0.15, 0.15 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
 length = 0.3
 loop = false
@@ -97,7 +97,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1430 ), Vector2( 0, 1130 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
 length = 0.3
 loop = false
@@ -113,7 +113,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
@@ -228,7 +228,7 @@ texture = ExtResource( 5 )
 [node name="Right" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 570, 1130 )
+transform/pos = Vector2( 570, 1144.7 )
 transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -252,7 +252,7 @@ _update_shape_index = 0
 [node name="Left" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 150, 1130 )
+transform/pos = Vector2( 150, 1144.7 )
 transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
@@ -306,7 +306,7 @@ transform/pos = Vector2( 0, 5 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 4 )
 animation = "default"
-frame = 9
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
@@ -333,9 +333,9 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/die = SubResource( 8 )
-anims/lowerteetgoingup = SubResource( 5 )
-anims/lowerteethgoingdown = SubResource( 6 )
+anims/die = SubResource( 5 )
+anims/lowerteetgoingup = SubResource( 6 )
+anims/lowerteethgoingdown = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -343,6 +343,7 @@ autoplay = ""
 
 [node name="ControlScore" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -373,8 +374,9 @@ max_lines_visible = -1
 
 visibility/visible = false
 transform/pos = Vector2( 400.818, 441.995 )
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 animation = "default"
+frame = 6
 playing = true
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]

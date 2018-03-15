@@ -11,7 +11,7 @@ func _on_Area2D_body_enter( body ):
 
 	get_node("/root/Game").stop_go_down()
 	if(body.get_name() == "Player"):
-		print(body.get_name())
+		#print(body.get_name())
 		get_node("/root/Game/Animation").play("die")
 	else:
 		pass
