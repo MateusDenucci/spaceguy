@@ -34,12 +34,12 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 100.223
+radius = 76.754
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 99.7774
+radius = 104.47
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -245,11 +245,11 @@ texture = ExtResource( 5 )
 [node name="Right" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 570, 1144.7 )
+transform/pos = Vector2( 593.383, 1150 )
 transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.78369, 6.95898 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -258,10 +258,13 @@ angular_damp = 1.0
 
 [node name="BtnRight" type="Sprite" parent="Control/Right"]
 
+transform/pos = Vector2( -1.39191, 8.35089 )
+transform/scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 
 [node name="ShapeRight" type="CollisionShape2D" parent="Control/Right"]
 
+transform/pos = Vector2( 2.78369, 6.95898 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -269,11 +272,11 @@ _update_shape_index = 0
 [node name="Left" type="Area2D" parent="Control"]
 
 editor/display_folded = true
-transform/pos = Vector2( 150, 1144.7 )
+transform/pos = Vector2( 123.277, 1150 )
 transform/scale = Vector2( 1.2, 1.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 0.7, 0, 0, 0.7, -3.05176e-05, 6.95898 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -282,10 +285,14 @@ angular_damp = 1.0
 
 [node name="BtnLeft" type="Sprite" parent="Control/Left"]
 
+transform/pos = Vector2( 4.17546, 9.74274 )
+transform/scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 7 )
 
 [node name="ShapeLeft" type="CollisionShape2D" parent="Control/Left"]
 
+transform/pos = Vector2( -3.05176e-05, 6.95898 )
+transform/scale = Vector2( 0.7, 0.7 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -412,7 +419,7 @@ visibility/visible = false
 transform/pos = Vector2( 400.818, 441.995 )
 frames = SubResource( 9 )
 animation = "default"
-frame = 6
+frame = 1
 playing = true
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
