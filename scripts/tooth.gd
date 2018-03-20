@@ -9,10 +9,13 @@ func _ready():
 
 func _on_Area2D_body_enter( body ):
 
-	get_node("/root/Game").stop_go_down()
+	
 	if(body.get_name() == "Player"):
 		#print(body.get_name())
-		get_node("/root/Game/Animation").play("die")
+		#get_node("/root/Game/Animation").play("die")
+		get_node("/root/Game/Player").hide()
+		get_node("/root/Game/Blood").show()
+		get_node("/root/Game/GameOverScreen").start()
 	else:
-		pass
+		get_node("/root/Game").stop_go_down()
 		#get_node("/root/Game").score_increment()

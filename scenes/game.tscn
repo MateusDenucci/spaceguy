@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=1]
+[gd_scene load_steps=44 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -20,16 +20,19 @@
 [ext_resource path="res://assets/novo_correto.png" type="Texture" id=18]
 [ext_resource path="res://assets/player.png" type="Texture" id=19]
 [ext_resource path="res://assets/Stickguy/Untitled-1.png" type="Texture" id=20]
-[ext_resource path="res://assets/blood.png" type="Texture" id=21]
-[ext_resource path="res://assets/font_green_160.fnt" type="BitmapFont" id=22]
-[ext_resource path="res://assets/angel/angel1.png" type="Texture" id=23]
-[ext_resource path="res://assets/angel/angel2.png" type="Texture" id=24]
-[ext_resource path="res://assets/angel/angel3.png" type="Texture" id=25]
-[ext_resource path="res://assets/angel/angel4.png" type="Texture" id=26]
-[ext_resource path="res://assets/angel/angel5.png" type="Texture" id=27]
-[ext_resource path="res://assets/angel/angel7.png" type="Texture" id=28]
-[ext_resource path="res://assets/angel/angel6.png" type="Texture" id=29]
-[ext_resource path="res://assets/angel/angel8.png" type="Texture" id=30]
+[ext_resource path="res://assets/font_green_160.fnt" type="BitmapFont" id=21]
+[ext_resource path="res://assets/blood.png" type="Texture" id=22]
+[ext_resource path="res://scripts/gameover.gd" type="Script" id=23]
+[ext_resource path="res://assets/background.png" type="Texture" id=24]
+[ext_resource path="res://assets/font_white_160.fnt" type="BitmapFont" id=25]
+[ext_resource path="res://assets/angel/angel1.png" type="Texture" id=26]
+[ext_resource path="res://assets/angel/angel2.png" type="Texture" id=27]
+[ext_resource path="res://assets/angel/angel3.png" type="Texture" id=28]
+[ext_resource path="res://assets/angel/angel4.png" type="Texture" id=29]
+[ext_resource path="res://assets/angel/angel5.png" type="Texture" id=30]
+[ext_resource path="res://assets/angel/angel7.png" type="Texture" id=31]
+[ext_resource path="res://assets/angel/angel6.png" type="Texture" id=32]
+[ext_resource path="res://assets/angel/angel8.png" type="Texture" id=33]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -82,20 +85,50 @@ tracks/0/path = NodePath("Player/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
+"times": FloatArray(  ),
+"transitions": FloatArray(  ),
 "update": 1,
-"values": [ ExtResource( 19 ), ExtResource( 21 ) ]
+"values": [  ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Player/Sprite:transform/scale")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
+"times": FloatArray(  ),
+"transitions": FloatArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/Sprite:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
 "times": FloatArray( 0, 0.2 ),
 "transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.435292, 0.435292 ), Vector2( 0.15, 0.15 ) ]
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Blood:visibility/visible")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:mode")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 2 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -130,10 +163,27 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+
+resource/name = "angel_up"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 360, 1407.81 ), Vector2( 360, 700 ) ]
+}
+
 [sub_resource type="SpriteFrames" id=9]
 
 animations = [ {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.0
@@ -242,6 +292,8 @@ texture = ExtResource( 5 )
 
 [node name="Control" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="Right" type="Area2D" parent="Control"]
 
 editor/display_folded = true
@@ -299,6 +351,7 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -342,7 +395,7 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( -0.541975, -2.76767 )
-transform/scale = Vector2( 0.43, 0.43 )
+transform/scale = Vector2( 0.435292, 0.435292 )
 texture = ExtResource( 19 )
 
 [node name="Sprite 2" type="Sprite" parent="Player"]
@@ -367,7 +420,7 @@ autoplay = ""
 [node name="TimerCloseMouth" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 3.0
+wait_time = 1.5
 one_shot = false
 autostart = false
 
@@ -406,20 +459,99 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 14.0
-custom_fonts/font = ExtResource( 22 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 0.133333, 0.545098, 0.133333, 1 )
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Blood" type="Sprite" parent="."]
 
 visibility/visible = false
-transform/pos = Vector2( 400.818, 441.995 )
+transform/pos = Vector2( 360, 700 )
+transform/rot = 45.0
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 22 )
+
+[node name="GameOverScreen" type="Control" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 23 )
+
+[node name="Sprite" type="Sprite" parent="GameOverScreen"]
+
+visibility/visible = false
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Game Over" type="Label" parent="GameOverScreen"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 59.0
+margin/top = 199.0
+margin/right = 704.0
+margin/bottom = 336.0
+custom_fonts/font = ExtResource( 25 )
+text = "Game Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="GameOverScreen"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="PlayAgain" type="Label" parent="GameOverScreen"]
+
+visibility/visible = false
+rect/scale = Vector2( 0.6, 0.6 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 185.0
+margin/top = 392.0
+margin/right = 831.0
+margin/bottom = 529.0
+custom_fonts/font = ExtResource( 25 )
+text = "Play Again"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationGameOver" type="AnimationPlayer" parent="GameOverScreen"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/angel_up = SubResource( 10 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameOverScreen"]
+
+transform/pos = Vector2( 360, 1407.81 )
+transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 9 )
 animation = "default"
-frame = 1
+frame = 4
 playing = true
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
@@ -427,5 +559,7 @@ playing = true
 [connection signal="input_event" from="Control/Left" to="Player" method="_on_Left_input_event"]
 
 [connection signal="timeout" from="TimerCloseMouth" to="." method="_on_TimerCloseMouth_timeout"]
+
+[connection signal="timeout" from="GameOverScreen/Timer" to="GameOverScreen" method="_on_Timer_timeout"]
 
 

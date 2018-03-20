@@ -93,6 +93,7 @@ func get_avaible_spaces():
 	return spaces
 	
 func play():
+
 	timerclosemouth.stop()
 	lowerteeth.set_pos(Vector2(0,1430))
 	animation.seek(0,true)
