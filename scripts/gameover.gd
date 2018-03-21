@@ -10,7 +10,6 @@ func _input(event):
 		get_tree().reload_current_scene()
 
 func start():
-	print("gameoverscreen")
 	get_node("/root/Game/TimerCloseMouth").stop()
 	show()
 	get_node("AnimationGameOver").play("angel_up")

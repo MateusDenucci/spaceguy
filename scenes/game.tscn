@@ -551,7 +551,6 @@ transform/pos = Vector2( 360, 1407.81 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 10 )
 animation = "default"
-frame = 7
 playing = true
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]

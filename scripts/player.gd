@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var canMove = true #necessary
+var morto = false
 
 func _ready():
 	pass

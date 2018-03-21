@@ -15,7 +15,7 @@ var avaible_spaces
 var sprite_player_size = 180
 var score = 0
 
-var initialVibration = 1.3
+var initialVibration = 3
 var vibration = 0
 var alreadyVibrated = false
 
@@ -26,10 +26,13 @@ var offsetYTopTeeth = 200
 func _ready():
 	randomize()
 	set_process(true)	
+	#player.morto = false
 	play()	
 	
 func vibrate():
-	vibration = initialVibration	
+	vibration = initialVibration - score*.02	
+	if vibration < 1:
+		vibration = 1
 	
 func _process(delta):
 	if(goDown):
@@ -59,9 +62,9 @@ func random_height():
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
 	var safe_already = []
-	var safe_tooth = int(rand_range(0,9))
-	safe_already.append(safe_tooth)
-	for i in range(0,avaible_spaces-1):
+	#var safe_tooth = int(rand_range(0,9))
+	#safe_already.append(safe_tooth)
+	for i in range(0,avaible_spaces):
 		var safe_tooth = int(rand_range(0,9))
 		if(safe_already.has(safe_tooth) == false):
 			safe_already.append(safe_tooth)
@@ -80,14 +83,17 @@ func stop_go_down():
 	timerclosemouth.start()
 
 func _on_TimerCloseMouth_timeout():
-	play()
+	if !player.morto:
+		play()
 	
 func get_avaible_spaces():
 	var spaces
 	if score <= 10:
-		spaces = int(rand_range(0,3))
+		spaces = int(rand_range(1,4))
 	elif score > 10 and score <= 20:
-		spaces = int(rand_range(0,2))
+		spaces = int(rand_range(1,3))
+	elif score > 20 and score <= 30:
+		spaces = int(rand_range(1,2))
 	else:
 		spaces = 1
 	return spaces
@@ -96,7 +102,7 @@ func play():
 
 	timerclosemouth.stop()
 	lowerteeth.set_pos(Vector2(0,1430))
-	animation.seek(0,true)
+	#animation.seek(0,true)
 	avaible_spaces = get_avaible_spaces()
 	
 	animation.play("lowerteetgoingup")

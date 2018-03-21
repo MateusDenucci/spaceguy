@@ -1,4 +1,5 @@
-morre sempre?
-game over
-tela de abertura
-dificultar o jogo
+highscore
+animação jogando pra cima
+tela começo
+botao sair do jogo
+botar som e botao som	
