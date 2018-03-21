@@ -116,3 +116,9 @@ func score_increment():
 	score += 1
 	scoreboard.set_text(str(score))
 	
+func gameover():
+	player.hide()
+	get_node("Control").hide()
+	get_node("Blood").show()
+	get_node("GameOverScreen").start()
+
