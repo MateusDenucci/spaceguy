@@ -15,7 +15,7 @@ var avaible_spaces
 var sprite_player_size = 180
 var score = 0
 var highscore = 0
-
+var song_is_playing = true
 
 var initialVibration = 3
 var vibration = 0
@@ -32,6 +32,7 @@ var save_data = {"highscore":0}
 
 
 func _ready():
+	get_node("SamplePlayer").play("jungledrum")
 	randomize()
 	set_process(true)	
 	#player.morto = false
@@ -155,6 +156,9 @@ func score_increment():
 	scoreboard.set_text(str(score))
 	
 func gameover():
+	if(song_is_playing):
+		get_node("GameOverScreen/SomDie").play()
+	
 	if(score > highscore):
 		highscore = score
 		save()
@@ -163,3 +167,11 @@ func gameover():
 	get_node("Blood").show()
 	get_node("GameOverScreen").start()
 
+
+func _on_MuteButton_pressed():
+	if song_is_playing:
+		get_node("SamplePlayer").stop_all()
+		song_is_playing = false
+	else:
+		get_node("SamplePlayer").play("jungledrum")
+		song_is_playing = true
