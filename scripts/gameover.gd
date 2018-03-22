@@ -10,6 +10,7 @@ func _input(event):
 		get_tree().reload_current_scene()
 
 func start():
+	get_node("HighScore").set_text("HIGHSCORE:  "+str(get_parent().highscore))	
 	get_node("/root/Game/TimerCloseMouth").stop()
 	show()
 	get_node("AnimationGameOver").play("angel_up")

@@ -14,6 +14,8 @@ var goDown = false
 var avaible_spaces
 var sprite_player_size = 180
 var score = 0
+var highscore = 0
+
 
 var initialVibration = 3
 var vibration = 0
@@ -23,11 +25,41 @@ var closeMouth = false
 
 var offsetYTopTeeth = 200
 
+#### Highscore
+var save_file = File.new()
+var save_path = "user://savegame.save"
+var save_data = {"highscore":0}
+
+
 func _ready():
 	randomize()
 	set_process(true)	
 	#player.morto = false
-	play()	
+	play()
+	
+	if not save_file.file_exists(save_path):
+		create_save()
+	else:
+		read()
+
+func create_save():
+	save_file.open(save_path, File.WRITE)
+	save_file.store_var(save_data)
+	save_file.close()
+	
+func save():
+	save_data["highscore"] = highscore
+	save_file.open(save_path,File.WRITE)
+	save_file.store_var(save_data)
+	save_file.close()
+	
+func read():
+	save_file.open(save_path, File.READ)
+	save_data = save_file.get_var()
+	save_file.close()
+	highscore = save_data["highscore"]
+
+
 	
 func vibrate():
 	vibration = initialVibration - score*.02	
@@ -123,6 +155,9 @@ func score_increment():
 	scoreboard.set_text(str(score))
 	
 func gameover():
+	if(score > highscore):
+		highscore = score
+		save()
 	player.hide()
 	get_node("Control").hide()
 	get_node("Blood").show()

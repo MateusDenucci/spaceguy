@@ -177,7 +177,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 1 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 360, 1407.81 ), Vector2( 360, 700 ) ]
+"values": [ Vector2( 360, 1407.81 ), Vector2( 360, 400 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=10]
@@ -351,6 +351,7 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -500,9 +501,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 59.0
-margin/top = 199.0
+margin/top = 14.0
 margin/right = 704.0
-margin/bottom = 336.0
+margin/bottom = 151.0
 custom_fonts/font = ExtResource( 25 )
 text = "Game Over"
 percent_visible = 1.0
@@ -525,9 +526,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 185.0
-margin/top = 392.0
+margin/top = 156.0
 margin/right = 831.0
-margin/bottom = 529.0
+margin/bottom = 293.0
 custom_fonts/font = ExtResource( 25 )
 text = "Play Again"
 percent_visible = 1.0
@@ -551,7 +552,25 @@ transform/pos = Vector2( 360, 1407.81 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 10 )
 animation = "default"
+frame = 4
 playing = true
+
+[node name="HighScore" type="Label" parent="GameOverScreen"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 103.0
+margin/top = 1121.0
+margin/right = 213.0
+margin/bottom = 1258.0
+custom_fonts/font = ExtResource( 25 )
+text = "hi"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 
