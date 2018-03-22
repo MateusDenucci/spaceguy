@@ -1,5 +1,3 @@
-highscore
 animação jogando pra cima
-tela começo
-botao sair do jogo
-botar som e botao som	
+botar som e botao som
+Adicionar loja de chapeus(logica)
