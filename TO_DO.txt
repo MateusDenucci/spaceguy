@@ -1,3 +1,2 @@
 animação jogando pra cima
-botar som e botao som
 Adicionar loja de chapeus(logica)

@@ -32,7 +32,7 @@ var avaible_spaces
 var sprite_player_size = 180
 var score = 0
 var highscore = 0
-
+var song_is_playing = true
 
 var initialVibration = 3
 var vibration = 0
@@ -49,6 +49,7 @@ var save_data = {"highscore":0}
 
 
 func _ready():
+	get_node("SamplePlayer").play("jungledrum")
 	randomize()
 	set_process(true)	
 	avaible_spaces = get_avaible_spaces()
@@ -107,10 +108,11 @@ func _process(delta):
 	elif animMouthOpen:
 		if !jaIncrementouScore:
 			score_increment()
+			player.set_gravity_scale(0)
 			playerXPos = player.randXPos()
 			while player.get_pos().x == playerXPos:
 				playerXPos = player.randXPos()
-			randPosPlayer = Vector2(playerXPos, 400)
+			randPosPlayer = Vector2(playerXPos, 600)
 			jaIncrementouScore = true
 				
 		moveToTarget(player, randPosPlayer, player.get_pos())		
@@ -145,8 +147,17 @@ func _process(delta):
 				
 			if topteeth.get_pos().y == 300 and lowerteeth.get_pos().y == 1130:
 				animMouthClose = false	
-				#player.podeSerMorto = true
+				print("agui")
+				player.set_gravity_scale(100)			
+				player.podeSerMorto = true
+				player.canMove = true	
+					
 				play()
+				
+#	#if player.onTooth():
+#		player.podeSerMorto = true
+#		player.canMove = true
+#		#player.set_gravity_scale(25)
 
 func moveToTarget(node, end, start):
 	var distance = start.distance_to(end)	
@@ -210,11 +221,12 @@ func play():
 	
 	#animation.play("lowerteetgoingup")
 	#vibrate()
-	player.canMove = true
-	player.podeSerMorto = true
+	#player.canMove = true
+	#player.podeSerMorto = true
 	#player.set_pos(Vector2(360,580))
 	
 	#topteeth.set_pos(Vector2(0,300))	
+	player.set_gravity_scale(25)
 	vibrate()
 	alreadyVibrated = false
 	goDown = true
@@ -229,6 +241,9 @@ func score_increment():
 	#play()
 	
 func gameover():
+	if(song_is_playing):
+		get_node("GameOverScreen/SomDie").play()
+	
 	if(score > highscore):
 		highscore = score
 		save()
@@ -241,3 +256,11 @@ func gameover():
 func _on_Tween_tween_complete( object, key ):
 	player.set_pos(randPosPlayer)
 	jogarPlayerAnimCompleta = true
+
+func _on_MuteButton_pressed():
+	if song_is_playing:
+		get_node("SamplePlayer").stop_all()
+		song_is_playing = false
+	else:
+		get_node("SamplePlayer").play("jungledrum")
+		song_is_playing = true
