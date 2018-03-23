@@ -177,7 +177,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 1 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 360, 1407.81 ), Vector2( 360, 400 ) ]
+"values": [ Vector2( 360, 1407.81 ), Vector2( 360, 700 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=10]
@@ -351,7 +351,6 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -363,7 +362,7 @@ mode = 2
 mass = 1.0
 friction = 0.0
 bounce = 0.0
-gravity_scale = 20.0
+gravity_scale = 25.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
@@ -500,9 +499,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 59.0
-margin/top = 14.0
+margin/top = 199.0
 margin/right = 704.0
-margin/bottom = 151.0
+margin/bottom = 336.0
 custom_fonts/font = ExtResource( 25 )
 text = "Game Over"
 percent_visible = 1.0
@@ -515,6 +514,24 @@ process_mode = 1
 wait_time = 1.5
 one_shot = false
 autostart = false
+
+[node name="PlayAgain" type="Label" parent="GameOverScreen"]
+
+visibility/visible = false
+rect/scale = Vector2( 0.6, 0.6 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 185.0
+margin/top = 392.0
+margin/right = 831.0
+margin/bottom = 529.0
+custom_fonts/font = ExtResource( 25 )
+text = "Play Again"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="AnimationGameOver" type="AnimationPlayer" parent="GameOverScreen"]
 
@@ -533,137 +550,15 @@ transform/pos = Vector2( 360, 1407.81 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 10 )
 animation = "default"
-frame = 5
+frame = 3
 playing = true
 
-[node name="HighScore" type="Label" parent="GameOverScreen"]
+[node name="Tween" type="Tween" parent="."]
 
-rect/scale = Vector2( 0.5, 0.5 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 103.0
-margin/top = 1121.0
-margin/right = 213.0
-margin/bottom = 1258.0
-custom_fonts/font = ExtResource( 25 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Exit" type="TextureButton" parent="GameOverScreen"]
-
-editor/display_folded = true
-rect/rotation = 90.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 172.0
-margin/top = 993.0
-margin/right = 388.0
-margin/bottom = 1379.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 24 )
-params/resize_mode = 0
-params/scale = Vector2( 0.3, 0.3 )
-params/stretch_mode = 0
-
-[node name="Label" type="Label" parent="GameOverScreen/Exit"]
-
-rect/rotation = 270.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 176.0
-margin/top = 76.0
-margin/right = 411.0
-margin/bottom = 213.0
-custom_fonts/font = ExtResource( 25 )
-text = "Exit"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
-
-editor/display_folded = true
-rect/rotation = 90.0
-rect/scale = Vector2( 0.3, 0.3 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 192.0
-margin/top = 650.0
-margin/right = 912.0
-margin/bottom = 1930.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 24 )
-params/resize_mode = 0
-params/stretch_mode = 0
-
-[node name="PlayAgain" type="Label" parent="GameOverScreen/TryAgain"]
-
-rect/rotation = 270.0
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 462.0
-margin/top = -3.0
-margin/right = 1108.0
-margin/bottom = 134.0
-custom_fonts/font = ExtResource( 25 )
-text = "Play Again"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Menu" type="TextureButton" parent="GameOverScreen"]
-
-editor/display_folded = true
-rect/rotation = 90.0
-rect/scale = Vector2( 0.3, 0.3 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 176.0
-margin/top = 365.0
-margin/right = 896.0
-margin/bottom = 1645.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 24 )
-params/resize_mode = 0
-params/stretch_mode = 0
-
-[node name="Menu" type="Label" parent="GameOverScreen/Menu"]
-
-rect/rotation = 270.0
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 498.0
-margin/top = 343.0
-margin/right = 811.0
-margin/bottom = 480.0
-custom_fonts/font = ExtResource( 25 )
-text = "Menu"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 
@@ -673,10 +568,6 @@ max_lines_visible = -1
 
 [connection signal="timeout" from="GameOverScreen/Timer" to="GameOverScreen" method="_on_Timer_timeout"]
 
-[connection signal="pressed" from="GameOverScreen/Exit" to="GameOverScreen" method="_on_Exit_pressed"]
-
-[connection signal="pressed" from="GameOverScreen/TryAgain" to="GameOverScreen" method="_on_TryAgain_pressed"]
-
-[connection signal="pressed" from="GameOverScreen/Menu" to="GameOverScreen" method="_on_Menu_pressed"]
+[connection signal="tween_complete" from="Tween" to="." method="_on_Tween_tween_complete"]
 
 

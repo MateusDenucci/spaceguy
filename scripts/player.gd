@@ -2,6 +2,7 @@ extends RigidBody2D
 
 var canMove = true #necessary
 var morto = false
+var podeSerMorto = true
 
 func _ready():
 	pass
@@ -13,6 +14,10 @@ func _on_Right_input_event( viewport, event, shape_idx ):
 func _on_Left_input_event( viewport, event, shape_idx ):
 	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):
 		move_left()
+		
+func randXPos():
+	var posicoes = [120, 200, 280, 360, 440, 520, 600]
+	return posicoes[randi() % posicoes.size()]
 
 func move_right():
 	var  constant = get_parent().get_node("LowerTeeth").get_pos().y - 228

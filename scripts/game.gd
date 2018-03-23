@@ -7,6 +7,23 @@ onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
 
+var animMouthOpen  = false
+var animMouthClose = false
+var yPosTopTeethOpenMouth 	= -500
+var yPosLowerTeethOpenMouth = 1900
+
+var jaIncrementouScore
+
+var playerXPos
+
+var jogarPlayerAnimCompleta = false
+var randPosPlayer
+
+onready var tween = get_node("Tween")
+var property = "transform/pos"
+
+var gameOver
+
 var vel
 var initialVel = 100
 
@@ -23,7 +40,7 @@ var alreadyVibrated = false
 
 var closeMouth = false
 
-var offsetYTopTeeth = 200
+var offsetYTopTeeth = 300
 
 #### Highscore
 var save_file = File.new()
@@ -34,8 +51,9 @@ var save_data = {"highscore":0}
 func _ready():
 	randomize()
 	set_process(true)	
-	#player.morto = false
-	play()
+	avaible_spaces = get_avaible_spaces()
+	random_height()	
+	play()	
 	
 	if not save_file.file_exists(save_path):
 		create_save()
@@ -62,11 +80,13 @@ func read():
 
 	
 func vibrate():
-	vibration = initialVibration - score*.02	
+	vibration = initialVibration - score*.05	
 	if vibration < 1:
 		vibration = 1
-	
+		
+
 func _process(delta):
+	#print(topteeth.get_pos().y)
 	if(goDown):
 		#### Vibration
 		if not alreadyVibrated:
@@ -83,7 +103,55 @@ func _process(delta):
 		### Close mouth
 		if closeMouth:
 			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + vel*delta+2))
+			
+	elif animMouthOpen:
+		if !jaIncrementouScore:
+			score_increment()
+			playerXPos = player.randXPos()
+			while player.get_pos().x == playerXPos:
+				playerXPos = player.randXPos()
+			randPosPlayer = Vector2(playerXPos, 400)
+			jaIncrementouScore = true
+				
+		moveToTarget(player, randPosPlayer, player.get_pos())		
 		
+		if topteeth.get_pos().y > yPosTopTeethOpenMouth:
+			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y - 1500*delta+2))
+		if lowerteeth.get_pos().y < yPosLowerTeethOpenMouth:
+			lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y + 700*delta+2))
+							
+		if topteeth.get_pos().y < yPosTopTeethOpenMouth and lowerteeth.get_pos().y > yPosLowerTeethOpenMouth:
+			animMouthOpen = false	
+			avaible_spaces = get_avaible_spaces()
+			random_height()
+			animMouthClose = true
+			jogarPlayerAnimCompleta = false
+			#for tooth in topteeth.get_children():
+			#	tooth.set_pos(Vector2(tooth.get_pos().x, 0))
+			#for tooth in lowerteeth.get_children():
+			#	tooth.set_pos(Vector2(tooth.get_pos().x, 0))			
+	
+	elif animMouthClose:
+		if jogarPlayerAnimCompleta:		
+			if topteeth.get_pos().y < 300:
+				topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + 700*delta+2))
+			else:
+				topteeth.set_pos(Vector2(0, 300))
+				
+			if lowerteeth.get_pos().y > 1130:
+				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 2000*delta+2))
+			else:
+				lowerteeth.set_pos(Vector2(0, 1130))
+				
+			if topteeth.get_pos().y == 300 and lowerteeth.get_pos().y == 1130:
+				animMouthClose = false	
+				#player.podeSerMorto = true
+				play()
+
+func moveToTarget(node, end, start):
+	var distance = start.distance_to(end)	
+	tween.interpolate_property(node, property, start, end, .6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
 
 func random_height():
 	var total_space = 350
@@ -111,8 +179,11 @@ func random_height():
 			
 func stop_go_down():
 	player.canMove = false
-	goDown = false
-	timerclosemouth.start()
+	goDown = false	
+	if not gameOver:
+		animMouthOpen = true
+	player.podeSerMorto = false
+	
 
 func _on_TimerCloseMouth_timeout():
 	if !player.morto:
@@ -121,7 +192,7 @@ func _on_TimerCloseMouth_timeout():
 func get_avaible_spaces():
 	var spaces
 	if score <= 10:
-		spaces = int(rand_range(1,4))
+		spaces = int(rand_range(2,4))
 	elif score > 10 and score <= 20:
 		spaces = int(rand_range(1,3))
 	elif score > 20 and score <= 30:
@@ -132,34 +203,41 @@ func get_avaible_spaces():
 	
 func play():
 
-	timerclosemouth.stop()
-	lowerteeth.set_pos(Vector2(0,1430))
+	#timerclosemouth.stop()
+	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
-	avaible_spaces = get_avaible_spaces()
+	gameOver = false	
 	
-	animation.play("lowerteetgoingup")
-	score_increment()	
-	vibrate()
+	#animation.play("lowerteetgoingup")
+	#vibrate()
 	player.canMove = true
-	player.set_pos(Vector2(360,580))
-	random_height()
-	topteeth.set_pos(Vector2(0,300))	
+	player.podeSerMorto = true
+	#player.set_pos(Vector2(360,580))
+	
+	#topteeth.set_pos(Vector2(0,300))	
 	vibrate()
 	alreadyVibrated = false
 	goDown = true
-	vel = log(250*score + 2.72)*initialVel
+	vel = log(250*(score+1) + 2.72)*initialVel
+	
+	jaIncrementouScore = false
 
 	
 func score_increment():
 	score += 1
 	scoreboard.set_text(str(score))
+	#play()
 	
 func gameover():
 	if(score > highscore):
 		highscore = score
 		save()
+	gameOver = true
 	player.hide()
 	get_node("Control").hide()
 	get_node("Blood").show()
 	get_node("GameOverScreen").start()
 
+func _on_Tween_tween_complete( object, key ):
+	player.set_pos(randPosPlayer)
+	jogarPlayerAnimCompleta = true
