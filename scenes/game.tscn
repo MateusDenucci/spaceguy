@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=1]
+[gd_scene load_steps=50 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -78,6 +78,11 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 0 ]
 }
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32.8988, 0.545959 )
 
 [sub_resource type="Animation" id=6]
 
@@ -467,14 +472,23 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="RayCast" type="RayCast2D" parent="Player"]
+[node name="Foot" type="Area2D" parent="Player"]
 
-transform/pos = Vector2( 0, 74.6988 )
-transform/scale = Vector2( 1, 0.378414 )
-enabled = false
-cast_to = Vector2( 0, 50 )
-layer_mask = 1
-type_mask = 15
+transform/pos = Vector2( 3.47946, 78.3281 )
+input/pickable = true
+shapes/0/shape = SubResource( 12 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Foot"]
+
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 0
 
 [node name="TimerCloseMouth" type="Timer" parent="."]
 
@@ -586,7 +600,6 @@ transform/pos = Vector2( 360, 1400 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 10 )
 animation = "default"
-frame = 4
 playing = true
 
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
@@ -768,6 +781,8 @@ params/stretch_mode = 0
 [connection signal="input_event" from="Control/Right" to="Player" method="_on_Right_input_event"]
 
 [connection signal="input_event" from="Control/Left" to="Player" method="_on_Left_input_event"]
+
+[connection signal="body_enter" from="Player/Foot" to="Player" method="_on_Foot_body_enter"]
 
 [connection signal="timeout" from="TimerCloseMouth" to="." method="_on_TimerCloseMouth_timeout"]
 

@@ -109,6 +109,7 @@ func _process(delta):
 		if !jaIncrementouScore:
 			score_increment()
 			player.set_gravity_scale(0)
+			player.playerOnTooth = false
 			playerXPos = player.randXPos()
 			while player.get_pos().x == playerXPos:
 				playerXPos = player.randXPos()
@@ -147,17 +148,16 @@ func _process(delta):
 				
 			if topteeth.get_pos().y == 300 and lowerteeth.get_pos().y == 1130:
 				animMouthClose = false	
-				print("agui")
-				player.set_gravity_scale(100)			
-				player.podeSerMorto = true
-				player.canMove = true	
+				player.set_gravity_scale(25)			
+				#player.podeSerMorto = true
+				#player.canMove = true	
 					
 				play()
-				
-#	#if player.onTooth():
-#		player.podeSerMorto = true
-#		player.canMove = true
-#		#player.set_gravity_scale(25)
+	
+	if player.playerOnTooth:
+		player.podeSerMorto = true
+		player.canMove = true
+		player.set_gravity_scale(25)
 
 func moveToTarget(node, end, start):
 	var distance = start.distance_to(end)	
@@ -226,7 +226,7 @@ func play():
 	#player.set_pos(Vector2(360,580))
 	
 	#topteeth.set_pos(Vector2(0,300))	
-	player.set_gravity_scale(25)
+	#player.set_gravity_scale(25)
 	vibrate()
 	alreadyVibrated = false
 	goDown = true
