@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=1]
+[gd_scene load_steps=51 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -33,10 +33,12 @@
 [ext_resource path="res://assets/angel/angel7.png" type="Texture" id=31]
 [ext_resource path="res://assets/angel/angel6.png" type="Texture" id=32]
 [ext_resource path="res://assets/angel/angel8.png" type="Texture" id=33]
-[ext_resource path="res://assets/sounds/dead.ogg" type="AudioStream" id=34]
-[ext_resource path="res://assets/sounds/Angel.ogg" type="AudioStream" id=35]
-[ext_resource path="res://assets/sounds/341733__setuniman__drum-loop-1m32.smp" type="Sample" id=36]
-[ext_resource path="res://assets/life.png" type="Texture" id=37]
+[ext_resource path="res://assets/un_button.png" type="Texture" id=34]
+[ext_resource path="res://assets/pr_button.png" type="Texture" id=35]
+[ext_resource path="res://assets/sounds/dead.ogg" type="AudioStream" id=36]
+[ext_resource path="res://assets/sounds/Angel.ogg" type="AudioStream" id=37]
+[ext_resource path="res://assets/sounds/341733__setuniman__drum-loop-1m32.smp" type="Sample" id=38]
+[ext_resource path="res://assets/life.png" type="Texture" id=39]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -191,7 +193,7 @@ tracks/1/keys = {
 "times": FloatArray( 2, 3 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 740, 560 ), Vector2( 180, 560 ) ]
+"values": [ Vector2( 740, 520 ), Vector2( 110, 520 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Menu:rect/pos")
@@ -201,7 +203,7 @@ tracks/2/keys = {
 "times": FloatArray( 2, 3 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -403, 800 ), Vector2( 180, 800 ) ]
+"values": [ Vector2( -403, 690 ), Vector2( 180, 690 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Exit:rect/pos")
@@ -211,7 +213,7 @@ tracks/3/keys = {
 "times": FloatArray( 2, 3 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 740, 1030 ), Vector2( 180, 1030 ) ]
+"values": [ Vector2( 740, 860 ), Vector2( 180, 860 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("AnimatedSprite:transform/pos")
@@ -239,7 +241,7 @@ samples/jungledrum = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 36 )
+"sample": ExtResource( 38 )
 }
 
 [node name="Game" type="Node2D"]
@@ -592,35 +594,34 @@ playing = true
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
 
 editor/display_folded = true
-rect/rotation = 90.0
-rect/scale = Vector2( 0.3, 0.3 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 740.0
-margin/top = 560.0
+margin/top = 520.0
 margin/right = 1460.0
-margin/bottom = 1840.0
+margin/bottom = 1800.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 24 )
+textures/normal = ExtResource( 34 )
+textures/pressed = ExtResource( 35 )
 params/resize_mode = 0
+params/scale = Vector2( 0.8, 0.6 )
 params/stretch_mode = 0
 
 [node name="PlayAgain" type="Label" parent="GameOverScreen/TryAgain"]
 
-rect/rotation = 270.0
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 0.6, 0.6 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 462.0
-margin/top = -3.0
-margin/right = 1108.0
-margin/bottom = 134.0
+margin/left = 59.0
+margin/top = 31.0
+margin/right = 705.0
+margin/bottom = 168.0
 custom_fonts/font = ExtResource( 25 )
 text = "Play Again"
 percent_visible = 1.0
@@ -630,35 +631,34 @@ max_lines_visible = -1
 [node name="Menu" type="TextureButton" parent="GameOverScreen"]
 
 editor/display_folded = true
-rect/rotation = 90.0
-rect/scale = Vector2( 0.3, 0.3 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = -403.0
-margin/top = 800.0
+margin/top = 690.0
 margin/right = 317.0
-margin/bottom = 2080.0
+margin/bottom = 1970.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 24 )
+textures/normal = ExtResource( 34 )
+textures/pressed = ExtResource( 35 )
 params/resize_mode = 0
+params/scale = Vector2( 0.6, 0.6 )
 params/stretch_mode = 0
 
 [node name="Menu" type="Label" parent="GameOverScreen/Menu"]
 
-rect/rotation = 270.0
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 498.0
-margin/top = 343.0
-margin/right = 811.0
-margin/bottom = 480.0
+margin/left = 66.0
+margin/top = 14.0
+margin/right = 379.0
+margin/bottom = 151.0
 custom_fonts/font = ExtResource( 25 )
 text = "Menu"
 percent_visible = 1.0
@@ -668,34 +668,34 @@ max_lines_visible = -1
 [node name="Exit" type="TextureButton" parent="GameOverScreen"]
 
 editor/display_folded = true
-rect/rotation = 90.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 740.0
-margin/top = 1030.0
-margin/right = 956.0
-margin/bottom = 1416.0
+margin/top = 860.0
+margin/right = 1114.0
+margin/bottom = 1246.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 24 )
+textures/normal = ExtResource( 34 )
+textures/pressed = ExtResource( 35 )
 params/resize_mode = 0
-params/scale = Vector2( 0.3, 0.3 )
+params/scale = Vector2( 0.6, 0.6 )
 params/stretch_mode = 0
 
 [node name="Label" type="Label" parent="GameOverScreen/Exit"]
 
-rect/rotation = 270.0
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 171.0
-margin/top = 76.0
-margin/right = 406.0
-margin/bottom = 213.0
+margin/left = 101.0
+margin/top = 16.0
+margin/right = 336.0
+margin/bottom = 153.0
 custom_fonts/font = ExtResource( 25 )
 text = "Exit"
 percent_visible = 1.0
@@ -704,7 +704,7 @@ max_lines_visible = -1
 
 [node name="SomDie" type="StreamPlayer" parent="GameOverScreen"]
 
-stream/stream = ExtResource( 34 )
+stream/stream = ExtResource( 36 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -715,7 +715,7 @@ stream/buffering_ms = 500
 
 [node name="SomAngel" type="StreamPlayer" parent="GameOverScreen"]
 
-stream/stream = ExtResource( 35 )
+stream/stream = ExtResource( 37 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -761,7 +761,7 @@ margin/bottom = 366.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 37 )
+textures/normal = ExtResource( 39 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
