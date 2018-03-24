@@ -3,8 +3,8 @@ extends RigidBody2D
 var canMove = true #necessary
 var morto = false
 var podeSerMorto = true
-
-onready var rayCast = get_node("RayCast")
+var playerOnTooth = false
+var podePisar = true
 
 func _ready():
 	pass
@@ -17,10 +17,6 @@ func _on_Left_input_event( viewport, event, shape_idx ):
 	if(event.type == InputEvent.SCREEN_TOUCH and event.pressed and canMove):		
 		move_left()
 		
-func onTooth():
-	var object = rayCast.get_collider()
-	print(object)
-	return rayCast.is_colliding()
 		
 func randXPos():
 	var posicoes = [120, 200, 280, 360, 440, 520, 600]
@@ -72,3 +68,15 @@ func has_space(tooth):
 	else:
 		return false
 
+func _on_Foot_body_enter( body ):
+	if podePisar:
+		playerOnTooth = true
+		
+		
+		
+		
+		
+		
+		
+		
+		
