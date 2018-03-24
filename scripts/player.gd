@@ -5,6 +5,8 @@ var morto = false
 var podeSerMorto = true
 var playerOnTooth = false
 
+onready var rayCast = get_node("RayCast")
+
 func _ready():
 	pass
 	
