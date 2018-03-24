@@ -79,12 +79,12 @@ tracks/0/keys = {
 "values": [ 0, 1, 0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.8988, 0.545959 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
 length = 0.2
 loop = false
@@ -140,7 +140,7 @@ tracks/4/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
 length = 0.3
 loop = false
@@ -156,7 +156,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1430 ), Vector2( 0, 1130 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 
 length = 0.3
 loop = false
@@ -172,9 +172,8 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
-resource/name = "gameover"
 length = 3.0
 loop = false
 step = 0.1
@@ -229,7 +228,7 @@ tracks/4/keys = {
 "values": [ Vector2( 360, 1400 ), Vector2( 360, 400 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=11]
 
 animations = [ {
 "frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
@@ -238,7 +237,7 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="SampleLibrary" id=11]
+[sub_resource type="SampleLibrary" id=12]
 
 samples/jungledrum = {
 "db": 0.0,
@@ -476,7 +475,7 @@ autoplay = ""
 
 transform/pos = Vector2( 3.47946, 78.3281 )
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -486,7 +485,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Foot"]
 
-shape = SubResource( 12 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
@@ -502,9 +501,9 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/die = SubResource( 6 )
-anims/lowerteetgoingup = SubResource( 7 )
-anims/lowerteethgoingdown = SubResource( 8 )
+anims/die = SubResource( 7 )
+anims/lowerteetgoingup = SubResource( 8 )
+anims/lowerteethgoingdown = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -588,7 +587,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/gameover = SubResource( 9 )
+anims/gameover = SubResource( 10 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -598,9 +597,9 @@ autoplay = ""
 
 transform/pos = Vector2( 360, 1400 )
 transform/scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "default"
-frame = 1
+frame = 7
 playing = true
 
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
@@ -748,7 +747,7 @@ playback/speed = 1.0
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 11 )
+config/samples = SubResource( 12 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

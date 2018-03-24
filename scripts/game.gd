@@ -110,13 +110,13 @@ func _process(delta):
 			score_increment()
 			player.set_gravity_scale(0)
 			player.playerOnTooth = false
+			player.podePisar = false
 			playerXPos = player.randXPos()
 			while player.get_pos().x == playerXPos:
 				playerXPos = player.randXPos()
 			randPosPlayer = Vector2(playerXPos, 600)
 			jaIncrementouScore = true
-				
-		moveToTarget(player, randPosPlayer, player.get_pos())		
+			moveToTarget(player, randPosPlayer, player.get_pos())	
 		
 		if topteeth.get_pos().y > yPosTopTeethOpenMouth:
 			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y - 1500*delta+2))
@@ -128,7 +128,8 @@ func _process(delta):
 			avaible_spaces = get_avaible_spaces()
 			random_height()
 			animMouthClose = true
-			jogarPlayerAnimCompleta = false
+			player.podePisar = true
+			#jogarPlayerAnimCompleta = false
 			#for tooth in topteeth.get_children():
 			#	tooth.set_pos(Vector2(tooth.get_pos().x, 0))
 			#for tooth in lowerteeth.get_children():
@@ -218,7 +219,7 @@ func play():
 	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
 	gameOver = false	
-	
+	jogarPlayerAnimCompleta = false
 	#animation.play("lowerteetgoingup")
 	#vibrate()
 	#player.canMove = true

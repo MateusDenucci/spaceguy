@@ -4,8 +4,7 @@ var canMove = true #necessary
 var morto = false
 var podeSerMorto = true
 var playerOnTooth = false
-
-onready var rayCast = get_node("RayCast")
+var podePisar = true
 
 func _ready():
 	pass
@@ -70,4 +69,14 @@ func has_space(tooth):
 		return false
 
 func _on_Foot_body_enter( body ):
-	playerOnTooth = true
+	if podePisar:
+		playerOnTooth = true
+		
+		
+		
+		
+		
+		
+		
+		
+		
