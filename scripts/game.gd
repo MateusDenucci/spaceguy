@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player = get_node("Player")
-onready var timerclosemouth = get_node("TimerCloseMouth")
+onready var timerOpenMouth = get_node("TimerOpenMouth")
 onready var animation = get_node("Animation")
 onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
@@ -37,6 +37,8 @@ var song_is_playing = true
 var initialVibration = 3
 var vibration = 0
 var alreadyVibrated = false
+
+var posPlayer
 
 var closeMouth = false
 
@@ -81,7 +83,7 @@ func read():
 
 	
 func vibrate():
-	vibration = initialVibration - score*.05	
+	vibration = initialVibration - score*.1
 	if vibration < 1:
 		vibration = 1
 		
@@ -111,17 +113,18 @@ func _process(delta):
 			player.set_gravity_scale(0)
 			player.playerOnTooth = false
 			player.podePisar = false
-			playerXPos = player.randXPos()
-			while player.get_pos().x == playerXPos:
-				playerXPos = player.randXPos()
-			randPosPlayer = Vector2(playerXPos, 600)
+			#playerXPos = player.randXPos()
+			#while player.get_pos().x == playerXPos:
+			#	playerXPos = player.randXPos()
+			#randPosPlayer = Vector2(playerXPos, 600)
+			posPlayer = Vector2(360, 600)
 			jaIncrementouScore = true
-			moveToTarget(player, randPosPlayer, player.get_pos())	
+			moveToTarget(player, posPlayer, player.get_pos())	
 		
 		if topteeth.get_pos().y > yPosTopTeethOpenMouth:
-			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y - 1500*delta+2))
+			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y - 3000*delta+2))
 		if lowerteeth.get_pos().y < yPosLowerTeethOpenMouth:
-			lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y + 700*delta+2))
+			lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y + 1400*delta+2))
 							
 		if topteeth.get_pos().y < yPosTopTeethOpenMouth and lowerteeth.get_pos().y > yPosLowerTeethOpenMouth:
 			animMouthOpen = false	
@@ -138,12 +141,12 @@ func _process(delta):
 	elif animMouthClose:
 		if jogarPlayerAnimCompleta:		
 			if topteeth.get_pos().y < 300:
-				topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + 700*delta+2))
+				topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + 1400*delta+2))
 			else:
 				topteeth.set_pos(Vector2(0, 300))
 				
 			if lowerteeth.get_pos().y > 1130:
-				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 2000*delta+2))
+				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 4000*delta+2))
 			else:
 				lowerteeth.set_pos(Vector2(0, 1130))
 				
@@ -155,10 +158,15 @@ func _process(delta):
 					
 				play()
 	
-	if player.playerOnTooth:
+	if jogarPlayerAnimCompleta and player.playerOnTooth:
+
 		player.podeSerMorto = true
 		player.canMove = true
 		player.set_gravity_scale(25)
+		jogarPlayerAnimCompleta = false
+	
+#	print(player.podeSerMorto)
+#	print(animMouthClose, player.playerOnTooth)
 
 func moveToTarget(node, end, start):
 	var distance = start.distance_to(end)	
@@ -192,14 +200,9 @@ func random_height():
 func stop_go_down():
 	player.canMove = false
 	goDown = false	
-	if not gameOver:
-		animMouthOpen = true
 	player.podeSerMorto = false
+	timerOpenMouth.start()
 	
-
-func _on_TimerCloseMouth_timeout():
-	if !player.morto:
-		play()
 	
 func get_avaible_spaces():
 	var spaces
@@ -219,7 +222,6 @@ func play():
 	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
 	gameOver = false	
-	jogarPlayerAnimCompleta = false
 	#animation.play("lowerteetgoingup")
 	#vibrate()
 	#player.canMove = true
@@ -231,7 +233,7 @@ func play():
 	vibrate()
 	alreadyVibrated = false
 	goDown = true
-	vel = log(250*(score+1) + 2.72)*initialVel
+	vel = log(750*(score+1) + 2.72)*initialVel
 	
 	jaIncrementouScore = false
 
@@ -255,7 +257,7 @@ func gameover():
 	get_node("GameOverScreen").start()
 
 func _on_Tween_tween_complete( object, key ):
-	player.set_pos(randPosPlayer)
+	player.set_pos(posPlayer)
 	jogarPlayerAnimCompleta = true
 
 func _on_MuteButton_pressed():
@@ -265,3 +267,7 @@ func _on_MuteButton_pressed():
 	else:
 		get_node("SamplePlayer").play("jungledrum")
 		song_is_playing = true
+
+func _on_TimerOpenMouth_timeout():	
+	if not gameOver:
+		animMouthOpen = true

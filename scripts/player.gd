@@ -19,9 +19,10 @@ func _on_Left_input_event( viewport, event, shape_idx ):
 		
 		
 func randXPos():
-	var posicoes = [120, 200, 280, 360, 440, 520, 600]
-	return posicoes[randi() % posicoes.size()]
-
+	#var posicoes = [120, 200, 280, 360, 440, 520, 600]
+	#return posicoes[randi() % posicoes.size()]
+	return 360
+	
 func move_right():
 	var  constant = get_parent().get_node("LowerTeeth").get_pos().y - 228
 	if(self.get_pos().x == 40) and has_space(1):

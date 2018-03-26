@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=1]
+[gd_scene load_steps=52 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/jungle.jpg" type="Texture" id=2]
@@ -229,6 +229,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 360, 1400 ), Vector2( 360, 400 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 3 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ativarBotoes"
+} ]
+}
 
 [sub_resource type="SpriteFrames" id=11]
 
@@ -408,6 +420,7 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -491,11 +504,11 @@ shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
-[node name="TimerCloseMouth" type="Timer" parent="."]
+[node name="TimerOpenMouth" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 1.5
-one_shot = false
+wait_time = 0.5
+one_shot = true
 autostart = false
 
 [node name="Animation" type="AnimationPlayer" parent="."]
@@ -569,7 +582,6 @@ centered = false
 
 [node name="Game Over" type="Label" parent="GameOverScreen"]
 
-visibility/opacity = 0.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -597,11 +609,11 @@ autoplay = ""
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GameOverScreen"]
 
-transform/pos = Vector2( 360, 1400 )
+transform/pos = Vector2( 360, 400 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 11 )
 animation = "default"
-frame = 7
+frame = 3
 playing = true
 
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
@@ -611,10 +623,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 740.0
+margin/left = 110.0
 margin/top = 520.0
-margin/right = 1460.0
-margin/bottom = 1800.0
+margin/right = 610.0
+margin/bottom = 665.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -648,10 +660,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -403.0
+margin/left = 180.0
 margin/top = 690.0
-margin/right = 317.0
-margin/bottom = 1970.0
+margin/right = 553.8
+margin/bottom = 835.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -685,10 +697,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 740.0
+margin/left = 180.0
 margin/top = 860.0
-margin/right = 1114.0
-margin/bottom = 1246.0
+margin/right = 553.8
+margin/bottom = 1005.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -784,7 +796,7 @@ params/stretch_mode = 0
 
 [connection signal="body_enter" from="Player/Foot" to="Player" method="_on_Foot_body_enter"]
 
-[connection signal="timeout" from="TimerCloseMouth" to="." method="_on_TimerCloseMouth_timeout"]
+[connection signal="timeout" from="TimerOpenMouth" to="." method="_on_TimerOpenMouth_timeout"]
 
 [connection signal="pressed" from="GameOverScreen/TryAgain" to="GameOverScreen" method="_on_TryAgain_pressed"]
 

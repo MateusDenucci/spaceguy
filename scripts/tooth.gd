@@ -4,6 +4,8 @@ extends Node2D
 # var a = 2
 # var b = "textvar"
 
+onready var rayCast = get_node("StaticBody2DTooth/RayCast")
+
 func _ready():
 	pass
 
@@ -12,8 +14,9 @@ func _on_Area2D_body_enter( body ):
 		get_node("/root/Game").gameover()
 		get_node("/root/Game/Player").morto = true
 	else:
-		#print(body.get_name())
-		get_node("/root/Game").stop_go_down()
+		if rayCast.is_colliding():
+			#print(body.get_name())
+			get_node("/root/Game").stop_go_down()
 		
 		
 		
