@@ -264,7 +264,9 @@ func _on_MuteButton_pressed():
 	if song_is_playing:
 		get_node("SamplePlayer").stop_all()
 		song_is_playing = false
+		get_node("MuteButton").set_normal_texture(load("res://assets/audio_off.png"))
 	else:
+		get_node("MuteButton").set_normal_texture(load("res://assets/audio.png"))
 		get_node("SamplePlayer").play("jungledrum")
 		song_is_playing = true
 

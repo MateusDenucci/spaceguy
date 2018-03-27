@@ -9,10 +9,7 @@ func _ready():
 	pass
 	
 func start():
-	#get_node("HighScore").set_text("HIGHSCORE:  "+str(get_parent().highscore))	
-	#get_node("/root/Game/TimerCloseMouth").stop()
-	
-	#tryAgainButton.set_disabled(true)
+	get_node("HighScore").set_text("HIGHSCORE :  "+str(get_parent().highscore))	
 	show()
 	get_node("SomAngel").play()
 	get_node("AnimationGameOver").play("gameover")
