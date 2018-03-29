@@ -11,8 +11,8 @@ extents = Vector2( 36.3815, 146.803 )
 [sub_resource type="SegmentShape2D" id=2]
 
 custom_solver_bias = 0.0
-a = Vector2( -39.6698, 150.055 )
-b = Vector2( 39.699, 149.772 )
+a = Vector2( -36.3415, -7.26004 )
+b = Vector2( 36.8432, -7.26004 )
 
 [node name="Tooth" type="Node2D"]
 
@@ -43,8 +43,8 @@ _update_shape_index = 0
 
 [node name="RayCast" type="RayCast2D" parent="StaticBody2DTooth"]
 
-transform/pos = Vector2( 0, 148.284 )
-transform/scale = Vector2( 1, 0.03 )
+transform/pos = Vector2( -0.115982, 149.103 )
+transform/scale = Vector2( 1, 0.250112 )
 enabled = true
 cast_to = Vector2( 0, 50 )
 layer_mask = 1
@@ -54,7 +54,7 @@ type_mask = 15
 
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -1.88936 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 155.299 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -63,7 +63,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
-transform/pos = Vector2( 0, -1.88936 )
+transform/pos = Vector2( 0, 155.299 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0

@@ -12,6 +12,9 @@ var animMouthClose = false
 var yPosTopTeethOpenMouth 	= -500
 var yPosLowerTeethOpenMouth = 1900
 
+var initialTimeStartVibrating = 2
+var timeStartVibrating = initialTimeStartVibrating
+
 var jaIncrementouScore
 
 var playerXPos
@@ -34,9 +37,13 @@ var score = 0
 var highscore = 0
 var song_is_playing = true
 
-var initialVibration = 3
+var initialVibration = 1
 var vibration = 0
 var alreadyVibrated = false
+
+var mouthClosed
+
+var safe_already
 
 var posPlayer
 
@@ -54,6 +61,7 @@ func _ready():
 	get_node("SamplePlayer").play("jungledrum")
 	randomize()
 	set_process(true)	
+	topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
 	avaible_spaces = get_avaible_spaces()
 	random_height()	
 	play()	
@@ -81,11 +89,14 @@ func read():
 	highscore = save_data["highscore"]
 
 
-	
 func vibrate():
-	vibration = initialVibration - score*.1
-	if vibration < 1:
-		vibration = 1
+	alreadyVibrated = false
+	closeMouth = false
+	initialTimeStartVibrating = initialTimeStartVibrating - score*.1
+	if initialTimeStartVibrating < .5:
+		initialTimeStartVibrating = .5
+	timeStartVibrating = initialTimeStartVibrating	
+	vibration = initialVibration	
 		
 
 func _process(delta):
@@ -93,19 +104,39 @@ func _process(delta):
 	if(goDown):
 		#### Vibration
 		if not alreadyVibrated:
-			if vibration > 0:
-				#topteeth.set_pos(Vector2(cos(rad2deg(vibration)), sin(rad2deg(vibration))))
-				#Se for vibrar em y, usar sen
-				topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
-				vibration -= delta
-			else:
-				topteeth.set_pos(Vector2(0,offsetYTopTeeth))
-				closeMouth = true		
-				alreadyVibrated = true
+			if timeStartVibrating > 0:
+				timeStartVibrating -= delta
+			else:				
+				if vibration > 0:
+					#topteeth.set_pos(Vector2(cos(rad2deg(vibration)), sin(rad2deg(vibration))))
+					#Se for vibrar em y, usar sen
+					topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
+					vibration -= delta
+				else:
+					topteeth.set_pos(Vector2(0,offsetYTopTeeth))
+					closeMouth = true		
+					alreadyVibrated = true
 		
 		### Close mouth
 		if closeMouth:
-			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + vel*delta+2))
+			var avancoY = vel*delta
+			var indiceTemp
+			for i in range(9):
+				if not safe_already.has(i):
+					indiceTemp = i
+					break
+			var primeiroDenteSupYPos = topteeth.get_children()[indiceTemp].get_global_pos().y
+			var primeiroDenteInfYPos = lowerteeth.get_children()[indiceTemp].get_global_pos().y
+			var difAltura = primeiroDenteInfYPos - primeiroDenteSupYPos
+
+			if difAltura - avancoY < 300:
+				avancoY = difAltura - 300			
+				mouthClosed = true
+
+			topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + avancoY))
+			
+			if mouthClosed:
+				stop_go_down()
 			
 	elif animMouthOpen:
 		if !jaIncrementouScore:
@@ -140,13 +171,20 @@ func _process(delta):
 	
 	elif animMouthClose:
 		if jogarPlayerAnimCompleta:		
-			if topteeth.get_pos().y < 300:
-				topteeth.set_pos(Vector2(topteeth.get_pos().x,topteeth.get_pos().y + 1400*delta+2))
+			if topteeth.get_pos().y < 300:		
+				print(topteeth.get_pos())		
+				topteeth.set_pos(Vector2(topteeth.get_pos().x, topteeth.get_pos().y + 1500*delta))
 			else:
+				print("pos certa", score)
 				topteeth.set_pos(Vector2(0, 300))
 				
+				
+				
+				
+				
+				
 			if lowerteeth.get_pos().y > 1130:
-				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 4000*delta+2))
+				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 4000*delta))
 			else:
 				lowerteeth.set_pos(Vector2(0, 1130))
 				
@@ -157,6 +195,8 @@ func _process(delta):
 				#player.canMove = true	
 					
 				play()
+	
+#	print(player.podeSerMorto)
 	
 	if jogarPlayerAnimCompleta and player.playerOnTooth:
 
@@ -181,10 +221,10 @@ func random_height():
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
-	var safe_already = []
+	safe_already = []
 	#var safe_tooth = int(rand_range(0,9))
 	#safe_already.append(safe_tooth)
-	for i in range(0,avaible_spaces):
+	for i in range(avaible_spaces):
 		var safe_tooth = int(rand_range(0,9))
 		if(safe_already.has(safe_tooth) == false):
 			safe_already.append(safe_tooth)
@@ -222,6 +262,7 @@ func play():
 	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
 	gameOver = false	
+	mouthClosed = false
 	#animation.play("lowerteetgoingup")
 	#vibrate()
 	#player.canMove = true
@@ -231,10 +272,9 @@ func play():
 	#topteeth.set_pos(Vector2(0,300))	
 	#player.set_gravity_scale(25)
 	vibrate()
-	alreadyVibrated = false
 	goDown = true
-	vel = log(750*(score+1) + 2.72)*initialVel
-	
+	#vel = log(750*(score+1) + 2.72)*initialVel
+	vel = 1500
 	jaIncrementouScore = false
 
 	
