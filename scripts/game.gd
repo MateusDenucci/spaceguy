@@ -30,6 +30,8 @@ var gameOver
 var vel
 var initialVel = 100
 
+var initialTimeStartVibratingMin = .2
+
 var goDown = false
 var avaible_spaces
 var sprite_player_size = 180
@@ -37,7 +39,7 @@ var score = 0
 var highscore = 0
 var song_is_playing = true
 
-var initialVibration = 1
+var initialVibration = 0.5
 var vibration = 0
 var alreadyVibrated = false
 
@@ -92,9 +94,9 @@ func read():
 func vibrate():
 	alreadyVibrated = false
 	closeMouth = false
-	initialTimeStartVibrating = initialTimeStartVibrating - score*.1
-	if initialTimeStartVibrating < .5:
-		initialTimeStartVibrating = .5
+	initialTimeStartVibrating = initialTimeStartVibrating - score*.03
+	if initialTimeStartVibrating < initialTimeStartVibratingMin:
+		initialTimeStartVibrating = initialTimeStartVibratingMin
 	timeStartVibrating = initialTimeStartVibrating	
 	vibration = initialVibration	
 		
@@ -274,7 +276,7 @@ func play():
 	vibrate()
 	goDown = true
 	#vel = log(750*(score+1) + 2.72)*initialVel
-	vel = 1500
+	vel = 2500
 	jaIncrementouScore = false
 
 	
@@ -293,7 +295,7 @@ func gameover():
 	gameOver = true
 	player.hide()
 	get_node("Control").hide()
-	get_node("Blood").show()
+#	get_node("Blood").show()
 	get_node("GameOverScreen").start()
 
 func _on_Tween_tween_complete( object, key ):
