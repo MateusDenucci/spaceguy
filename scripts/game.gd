@@ -295,7 +295,7 @@ func gameover():
 	gameOver = true
 	player.hide()
 	get_node("Control").hide()
-#	get_node("Blood").show()
+	get_node("Blood").show()
 	get_node("GameOverScreen").start()
 
 func _on_Tween_tween_complete( object, key ):

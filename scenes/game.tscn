@@ -8,17 +8,17 @@
 [ext_resource path="res://assets/btn_right.png" type="Texture" id=6]
 [ext_resource path="res://assets/btn_left.png" type="Texture" id=7]
 [ext_resource path="res://scripts/player.gd" type="Script" id=8]
-[ext_resource path="res://assets/Player/Idle__001.png" type="Texture" id=9]
-[ext_resource path="res://assets/Player/Idle__002.png" type="Texture" id=10]
-[ext_resource path="res://assets/Player/Idle__003.png" type="Texture" id=11]
-[ext_resource path="res://assets/Player/Idle__004.png" type="Texture" id=12]
-[ext_resource path="res://assets/Player/Idle__005.png" type="Texture" id=13]
-[ext_resource path="res://assets/Player/Idle__006.png" type="Texture" id=14]
-[ext_resource path="res://assets/Player/Idle__007.png" type="Texture" id=15]
-[ext_resource path="res://assets/Player/Idle__008.png" type="Texture" id=16]
-[ext_resource path="res://assets/Player/Idle__009.png" type="Texture" id=17]
-[ext_resource path="res://assets/novo_correto.png" type="Texture" id=18]
-[ext_resource path="res://assets/player.png" type="Texture" id=19]
+[ext_resource path="res://assets/player.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/idle_01.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player/idle_02.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/idle_03.png" type="Texture" id=12]
+[ext_resource path="res://assets/Player/idle_04.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/idle_05.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/idle_06.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/idle_07.png" type="Texture" id=16]
+[ext_resource path="res://assets/Player/idle_08.png" type="Texture" id=17]
+[ext_resource path="res://assets/Player/idle_09.png" type="Texture" id=18]
+[ext_resource path="res://assets/Player/idle_10.png" type="Texture" id=19]
 [ext_resource path="res://assets/Stickguy/Untitled-1.png" type="Texture" id=20]
 [ext_resource path="res://assets/blood.png" type="Texture" id=21]
 [ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=22]
@@ -56,15 +56,14 @@ extents = Vector2( 35.1967, 73.1418 )
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 10.0
 } ]
 
 [sub_resource type="Animation" id=5]
 
-resource/name = "agitarBracos"
 length = 0.2
 loop = true
 step = 0.1
@@ -420,7 +419,6 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -445,15 +443,6 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 8 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-
-visibility/visible = false
-transform/pos = Vector2( 0, 5 )
-transform/scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 4 )
-animation = "default"
-frame = 1
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
 transform/pos = Vector2( 1.84836, 3.75732 )
@@ -463,9 +452,19 @@ _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
-transform/pos = Vector2( -0.541975, -2.76767 )
+visibility/visible = false
+transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
-texture = ExtResource( 19 )
+texture = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+
+transform/pos = Vector2( -4, -2.76767 )
+transform/scale = Vector2( 0.435292, 0.435292 )
+frames = SubResource( 4 )
+animation = "default"
+frame = 6
+playing = true
 
 [node name="Sprite 2" type="Sprite" parent="Player"]
 
@@ -534,6 +533,7 @@ texture = ExtResource( 21 )
 
 [node name="ControlScore" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -555,7 +555,7 @@ margin/top = 0.0
 margin/right = 114.0
 margin/bottom = 190.0
 custom_fonts/font = ExtResource( 22 )
-custom_colors/font_color = Color( 0.133333, 0.545098, 0.133333, 1 )
+custom_colors/font_color = Color( 1, 0.87451, 0, 1 )
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -608,7 +608,7 @@ transform/pos = Vector2( 360, 400 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 11 )
 animation = "default"
-frame = 3
+frame = 6
 playing = true
 
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]
