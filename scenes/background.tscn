@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/background.gd" type="Script" id=1]
 [ext_resource path="res://assets/clouds/cloud1.PNG" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/stars/star1.png" type="Texture" id=5]
 [ext_resource path="res://assets/sky/sun.png" type="Texture" id=6]
 [ext_resource path="res://assets/sky/moon.png" type="Texture" id=7]
+[ext_resource path="res://assets/landscape.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -32,7 +33,7 @@ tracks/1/keys = {
 "times": FloatArray( 0, 10 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ 0.0, -360.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Clouds:transform/pos")
@@ -74,6 +75,16 @@ tracks/5/keys = {
 "update": 0,
 "values": [ 0.0, 1.0, 1.0, 0.0 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:modulate")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 0, 4, 6, 10 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0293732, 0.12708, 0.300781, 1 ), Color( 0.027451, 0.12549, 0.298039, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Background" type="Node"]
 
@@ -89,7 +100,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 720.0
 margin/bottom = 1280.0
-color = Color( 0, 0.0352941, 0.0980392, 1 )
+color = Color( 0.494118, 0.752941, 0.933333, 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 
@@ -105,8 +116,7 @@ autoplay = "timeGoingBy"
 [node name="Clouds" type="Area2D" parent="."]
 
 editor/display_folded = true
-visibility/opacity = 0.0
-transform/pos = Vector2( 477.778, 1280 )
+transform/pos = Vector2( 100, 1280 )
 input/pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -352,8 +362,8 @@ texture = ExtResource( 5 )
 
 [node name="Sun&Moon" type="Position2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 1280 )
-transform/rot = 252.0
 
 [node name="Sun" type="Sprite" parent="Sun&Moon"]
 
@@ -368,5 +378,10 @@ transform/rot = -20.0
 transform/scale = Vector2( 0.5, 0.5 )
 z/z = 1
 texture = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 360.078, 957.301 )
+texture = ExtResource( 8 )
 
 
