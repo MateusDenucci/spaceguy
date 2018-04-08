@@ -71,6 +71,4 @@ autostart = false
 
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_TextureButton_pressed"]
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
 

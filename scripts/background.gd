@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 onready var anim = get_node("Anim")
 

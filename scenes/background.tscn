@@ -86,7 +86,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.0293732, 0.12708, 0.300781, 1 ), Color( 0.027451, 0.12549, 0.298039, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Background" type="Node"]
+[node name="Background" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
