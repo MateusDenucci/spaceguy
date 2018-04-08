@@ -167,7 +167,6 @@ func _process(delta):
 			avaible_spaces = get_avaible_spaces()
 			random_height()
 			animMouthClose = true
-			player.podePisar = true
 			#jogarPlayerAnimCompleta = false
 			#for tooth in topteeth.get_children():
 			#	tooth.set_pos(Vector2(tooth.get_pos().x, 0))
@@ -176,7 +175,7 @@ func _process(delta):
 					
 	
 	elif animMouthClose:
-		print("animClose", topteeth.get_pos(), topteeth.get_pos().y < 300, delta, jogarPlayerAnimCompleta)
+		print("animClose", topteeth.get_pos(), topteeth.get_pos().y < 300, jogarPlayerAnimCompleta)
 		if jogarPlayerAnimCompleta:		
 			if topteeth.get_pos().y < 300:		
 				print(topteeth.get_pos())		
@@ -196,7 +195,8 @@ func _process(delta):
 				topTeethInPosition 	 = false
 				lowerTeethInPosition = false
 				animMouthClose = false	
-				player.set_gravity_scale(25)			
+				player.set_gravity_scale(25)	
+				player.podePisar = true		
 				#player.podeSerMorto = true
 				#player.canMove = true						
 				play()
@@ -207,7 +207,7 @@ func _process(delta):
 
 		player.podeSerMorto = true
 		player.canMove = true
-		player.set_gravity_scale(25)
+		#player.set_gravity_scale(25)
 		jogarPlayerAnimCompleta = false
 	
 #	print(player.podeSerMorto)
