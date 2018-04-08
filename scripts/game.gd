@@ -6,6 +6,8 @@ onready var animation = get_node("Animation")
 onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
+onready var playerIdleAnimatedSprite= get_node("Player/AnimatedSprite")
+onready var playerInFearSprite = get_node("Player/Sprite")
 
 var animMouthOpen  = false
 var animMouthClose = false
@@ -248,6 +250,8 @@ func stop_go_down():
 	player.canMove = false
 	goDown = false	
 	player.podeSerMorto = false
+	playerIdleAnimatedSprite.hide()
+	playerInFearSprite.show()
 	timerOpenMouth.start()
 	
 	
@@ -270,6 +274,8 @@ func play():
 	#animation.seek(0,true)
 	gameOver = false	
 	mouthClosed = false
+	playerIdleAnimatedSprite.show()
+	playerInFearSprite.hide()
 	#animation.play("lowerteetgoingup")
 	#vibrate()
 	#player.canMove = true
