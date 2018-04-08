@@ -12,6 +12,9 @@ var animMouthClose = false
 var yPosTopTeethOpenMouth 	= -500
 var yPosLowerTeethOpenMouth = 1900
 
+var topTeethInPosition 	 = false
+var lowerTeethInPosition = false
+
 var initialTimeStartVibrating = 2
 var timeStartVibrating = initialTimeStartVibrating
 
@@ -178,19 +181,18 @@ func _process(delta):
 				topteeth.set_pos(Vector2(topteeth.get_pos().x, topteeth.get_pos().y + 1500*delta))
 			else:
 				print("pos certa", score)
-				topteeth.set_pos(Vector2(0, 300))
-				
-				
-				
-				
-				
+				topteeth.set_pos(Vector2(0, 300))		
+				topTeethInPosition = true
 				
 			if lowerteeth.get_pos().y > 1130:
 				lowerteeth.set_pos(Vector2(lowerteeth.get_pos().x,lowerteeth.get_pos().y - 4000*delta))
 			else:
 				lowerteeth.set_pos(Vector2(0, 1130))
+				lowerTeethInPosition = true
 				
-			if topteeth.get_pos().y == 300 and lowerteeth.get_pos().y == 1130:
+			if topTeethInPosition and lowerTeethInPosition:
+				topTeethInPosition 	 = false
+				lowerTeethInPosition = false
 				animMouthClose = false	
 				player.set_gravity_scale(25)			
 				#player.podeSerMorto = true
@@ -226,8 +228,10 @@ func random_height():
 	safe_already = []
 	#var safe_tooth = int(rand_range(0,9))
 	#safe_already.append(safe_tooth)
+	var posicoes = [0, 1, 2, 3, 5, 6, 7, 8]
+	
 	for i in range(avaible_spaces):
-		var safe_tooth = int(rand_range(0,9))
+		var safe_tooth = posicoes[randi() % posicoes.size()]
 		if(safe_already.has(safe_tooth) == false):
 			safe_already.append(safe_tooth)
 	for safe_tooth in safe_already:

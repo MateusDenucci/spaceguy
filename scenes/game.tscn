@@ -419,6 +419,7 @@ _update_shape_index = 0
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 360, 700 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -463,7 +464,7 @@ transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
 frames = SubResource( 4 )
 animation = "default"
-frame = 5
+frame = 4
 playing = true
 
 [node name="Sprite 2" type="Sprite" parent="Player"]
@@ -563,6 +564,7 @@ max_lines_visible = -1
 
 [node name="GameOverScreen" type="Control" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
