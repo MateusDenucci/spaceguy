@@ -7,7 +7,7 @@ onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
 onready var playerIdleAnimatedSprite= get_node("Player/AnimatedSprite")
-onready var playerInFearSprite = get_node("Player/Sprite")
+onready var playerInFearSprite = get_node("Player/ShakeArms")
 
 var animMouthOpen  = false
 var animMouthClose = false
