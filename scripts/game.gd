@@ -7,7 +7,7 @@ onready var scoreboard = get_node("ControlScore/ScoreBoard")
 onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
 onready var playerIdleAnimatedSprite= get_node("Player/AnimatedSprite")
-onready var playerInFearSprite = get_node("Player/Sprite")
+onready var playerInFearSprite = get_node("Player/ShakeArms")
 
 var animMouthOpen  = false
 var animMouthClose = false
@@ -65,7 +65,8 @@ var save_data = {"highscore":0}
 
 
 func _ready():
-	get_node("SamplePlayer").play("jungledrum")
+	get_node("SamplePlayer").play("jungledrum")	
+	playerInFearSprite.get_sprite_frames().set_animation_speed("default", 30)	
 	randomize()
 	set_process(true)	
 	topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
@@ -206,6 +207,9 @@ func _process(delta):
 #	print(player.podeSerMorto)
 	
 	if jogarPlayerAnimCompleta and player.playerOnTooth:
+		
+		playerIdleAnimatedSprite.show()
+		playerInFearSprite.hide()
 
 		player.podeSerMorto = true
 		player.canMove = true
@@ -222,9 +226,15 @@ func moveToTarget(node, end, start):
 
 func random_height():
 	var total_space = 350
+	var height_low
+	var height_top
 	for i in range(0,9):
-		var height_low = int(rand_range((total_space - 300),300))
-		var height_top = (total_space - height_low) - 300
+		if i == 4:
+			height_low = int(rand_range(50,150))
+			height_top = (total_space - height_low) - 300
+		else:
+			height_low = int(rand_range((total_space - 300),300))
+			height_top = (total_space - height_low) - 300
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
@@ -250,8 +260,6 @@ func stop_go_down():
 	player.canMove = false
 	goDown = false	
 	player.podeSerMorto = false
-	playerIdleAnimatedSprite.hide()
-	playerInFearSprite.show()
 	timerOpenMouth.start()
 	
 	
@@ -273,9 +281,7 @@ func play():
 	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
 	gameOver = false	
-	mouthClosed = false
-	playerIdleAnimatedSprite.show()
-	playerInFearSprite.hide()
+	mouthClosed = false	
 	#animation.play("lowerteetgoingup")
 	#vibrate()
 	#player.canMove = true
@@ -326,3 +332,5 @@ func _on_MuteButton_pressed():
 func _on_TimerOpenMouth_timeout():	
 	if not gameOver:
 		animMouthOpen = true
+		playerIdleAnimatedSprite.hide()
+		playerInFearSprite.show()
