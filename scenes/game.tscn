@@ -105,7 +105,7 @@ length = 0.2
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:texture")
+tracks/0/path = NodePath("Player/PlayerScared:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "values": [  ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Sprite:transform/scale")
+tracks/1/path = NodePath("Player/PlayerScared:transform/scale")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
@@ -125,7 +125,7 @@ tracks/1/keys = {
 "values": [  ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Player/Sprite:visibility/visible")
+tracks/2/path = NodePath("Player/PlayerScared:visibility/visible")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
@@ -483,9 +483,10 @@ transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
 frames = SubResource( 4 )
 animation = "default"
+frame = 4
 playing = true
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="PlayerScared" type="Sprite" parent="Player"]
 
 visibility/visible = false
 transform/pos = Vector2( -4, -2.76767 )
@@ -498,7 +499,7 @@ transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
 frames = SubResource( 5 )
 animation = "default"
-frame = 9
+frame = 6
 playing = true
 
 [node name="Sprite 2" type="Sprite" parent="Player"]
@@ -645,7 +646,7 @@ transform/pos = Vector2( 360, 400 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 12 )
 animation = "default"
-frame = 2
+frame = 7
 playing = true
 
 [node name="TryAgain" type="TextureButton" parent="GameOverScreen"]

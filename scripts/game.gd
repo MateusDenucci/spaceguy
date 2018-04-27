@@ -8,6 +8,7 @@ onready var lowerteeth = get_node("LowerTeeth")
 onready var topteeth = get_node("TopTeeth")
 onready var playerIdleAnimatedSprite= get_node("Player/AnimatedSprite")
 onready var playerInFearSprite = get_node("Player/ShakeArms")
+onready var playerScared = get_node("Player/PlayerScared")
 
 var animMouthOpen  = false
 var animMouthClose = false
@@ -260,6 +261,8 @@ func stop_go_down():
 	player.canMove = false
 	goDown = false	
 	player.podeSerMorto = false
+	playerIdleAnimatedSprite.hide()
+	playerScared.show()
 	timerOpenMouth.start()
 	
 	
@@ -332,5 +335,5 @@ func _on_MuteButton_pressed():
 func _on_TimerOpenMouth_timeout():	
 	if not gameOver:
 		animMouthOpen = true
-		playerIdleAnimatedSprite.hide()
+		playerScared.hide()
 		playerInFearSprite.show()
