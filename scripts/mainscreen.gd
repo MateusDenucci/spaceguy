@@ -4,7 +4,7 @@ onready var sprite = get_node("Sprite")
 onready var control = get_node("Control")
 onready var timer = get_node("Timer")
 
-func _ready():
+func _ready():	
 	showScene()
 
 func _on_TextureButton_pressed():
