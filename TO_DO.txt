@@ -1,3 +1,2 @@
 arte tela inicial
-animacao do personagem tween
 loja de chapeus?
