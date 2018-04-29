@@ -1,5 +1,13 @@
 extends Node2D
 
+var admob = null
+var isReal = true
+var adBannerId = "ca-app-pub-3940256099942544/6300978111"
+#var adBannerId = "ca-app-pub-3455131815008956/6028386143"
+
+var numberOfRetries
+var retryNumber = 0
+
 onready var player = get_node("Player")
 onready var timerOpenMouth = get_node("TimerOpenMouth")
 onready var animation = get_node("Animation")
@@ -64,8 +72,10 @@ var save_file = File.new()
 var save_path = "user://savegame.save"
 var save_data = {"highscore":0}
 
-
 func _ready():
+	if(Globals.has_singleton("AdMob")):
+		admob = Globals.get_singleton("AdMob")
+		admob.init(isReal, get_instance_ID())
 	get_node("SamplePlayer").play("jungledrum")	
 	playerInFearSprite.get_sprite_frames().set_animation_speed("default", 30)	
 	randomize()
@@ -74,11 +84,17 @@ func _ready():
 	avaible_spaces = get_avaible_spaces()
 	random_height()	
 	play()	
+
+	numberOfRetries = randi(2, 5)
 	
 	if not save_file.file_exists(save_path):
 		create_save()
 	else:
 		read()
+
+func loadInterstitial():
+	if admob != null:
+		admob.loadInterstitial(adBannerId)
 
 func create_save():
 	save_file.open(save_path, File.WRITE)
@@ -202,8 +218,12 @@ func _process(delta):
 				player.set_gravity_scale(25)	
 				player.podePisar = true		
 				#player.podeSerMorto = true
-				#player.canMove = true						
-				play()
+				#player.canMove = true		
+				
+				if retryNumber == numberOfRetries:
+					loadInterstitial()
+				else:						
+					play()
 	
 #	print(player.podeSerMorto)
 	
@@ -279,7 +299,8 @@ func get_avaible_spaces():
 	return spaces
 	
 func play():
-
+	
+	retryNumber += 1
 	#timerclosemouth.stop()
 	#lowerteeth.set_pos(Vector2(0,1430))
 	#animation.seek(0,true)
@@ -337,3 +358,9 @@ func _on_TimerOpenMouth_timeout():
 		animMouthOpen = true
 		playerScared.hide()
 		playerInFearSprite.show()
+		
+func _on_interstitial_close():
+	numberOfRetries = randi(2, 5)
+	retryNumber = 0
+	play()
+	
