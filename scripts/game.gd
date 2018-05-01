@@ -66,6 +66,8 @@ var save_path = "user://savegame.save"
 var save_data = {"highscore":0}
 
 func _ready():
+	set_hat()
+	get_node("Player/AnimationPlayer").play("move_hat")
 	get_node("SamplePlayer").play("jungledrum")	
 	playerInFearSprite.get_sprite_frames().set_animation_speed("default", 30)	
 	randomize()
@@ -339,4 +341,11 @@ func _on_TimerOpenMouth_timeout():
 		animMouthOpen = true
 		playerScared.hide()
 		playerInFearSprite.show()
-			
+
+func set_hat():
+	#var hat = preload("res://assets/hats/viking.png")
+	var hat = preload("res://assets/hats/default.png")
+	get_node("Player/AnimatedSprite/Hat").set_texture(hat)
+	get_node("Player/ShakeArms/HatShakeArms").set_texture(hat)
+	get_node("Player/PlayerScared/HatPlayerScared").set_texture(hat)
+	get_node("GameOverScreen/AnimatedSprite/HatAngel").set_texture(hat)

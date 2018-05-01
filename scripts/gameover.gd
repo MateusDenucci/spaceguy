@@ -7,15 +7,12 @@ var adRewardedId = "ca-app-pub-3940256099942544/5224354917"
 #var adBannerId = "ca-app-pub-3940256099942544/6300978111"
 #var adInterId = "ca-app-pub-3455131815008956/6028386143"
 
-var time_to_restart = false
-
-#onready var tryAgainButton = get_node("TryAgain")
 
 func _ready():
 	randomize()
 	if(Globals.has_singleton("AdMob")):
 		admob = Globals.get_singleton("AdMob")
-		admob.init(isReal, get_instance_ID())		
+		admob.init(isReal, get_instance_ID())
 		loadInterstitial()
 		loadRewardedVideo()
 	#set_process_input(true)
@@ -41,7 +38,7 @@ func _on_Exit_pressed():
 
 func _on_TryAgain_pressed():
 	var random = int(rand_range(0,4))
-	if(true):
+	if(random == 2):
 		showInterstitialAd()
 	get_tree().reload_current_scene()
 			
