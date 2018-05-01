@@ -7,8 +7,13 @@ var adRewardedId = "ca-app-pub-3940256099942544/5224354917"
 #var adBannerId = "ca-app-pub-3940256099942544/6300978111"
 #var adInterId = "ca-app-pub-3455131815008956/6028386143"
 
+onready var tryAgainButton = get_node("TryAgain")
+onready var menuButton = get_node("Menu")
+onready var exitButton = get_node("Exit")
+
 
 func _ready():
+	ativarBotoes()
 	randomize()
 	if(Globals.has_singleton("AdMob")):
 		admob = Globals.get_singleton("AdMob")
@@ -32,11 +37,13 @@ func start():
 	get_node("AnimationGameOver").play("gameover")
 
 func _on_Exit_pressed():
+	desativarBotoes()
 	if admob != null:
 		admob.showRewardedVideo()
 	get_tree().quit()
 
 func _on_TryAgain_pressed():
+	desativarBotoes()
 	var random = int(rand_range(0,4))
 	if(random == 2):
 		showInterstitialAd()
@@ -47,11 +54,18 @@ func showInterstitialAd():
 		admob.showInterstitial()
 
 func _on_Menu_pressed():
+	desativarBotoes()
 	showInterstitialAd()
 	transition.fade_to("res://scenes/mainscreen.tscn")
 	
-# Fiz essa funcao pra ativar os botoes apenas quando a animacao terminar, 
-# mas acho que o jogador pode querer apertar antes pra recomecar mais rapido
+func desativarBotoes():
+	tryAgainButton.set("disabled", true)
+	menuButton.set("disabled", true)
+	exitButton.set("disabled", true)
+	
 func ativarBotoes():
-	#tryAgainButton.set_disabled(false)
-	pass
+	tryAgainButton.set("disabled", false)
+	menuButton.set("disabled", false)
+	exitButton.set("disabled", false)
+	
+
