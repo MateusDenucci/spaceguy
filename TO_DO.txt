@@ -1,2 +1,4 @@
-arte tela inicial
-loja de chapeus?
+loja de chapeus
+arrumar dente que sai demais
+transicao com loading
+ver marca branca player a noite????

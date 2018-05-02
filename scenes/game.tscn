@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=1]
+[gd_scene load_steps=67 format=1]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/background.tscn" type="PackedScene" id=2]
@@ -34,23 +34,24 @@
 [ext_resource path="res://assets/player_sem_chapeu/idle_07.png" type="Texture" id=32]
 [ext_resource path="res://assets/player_sem_chapeu/idle_08.png" type="Texture" id=33]
 [ext_resource path="res://assets/player_sem_chapeu/idle_09.png" type="Texture" id=34]
-[ext_resource path="res://assets/blood.png" type="Texture" id=35]
-[ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=36]
-[ext_resource path="res://scripts/gameover.gd" type="Script" id=37]
-[ext_resource path="res://assets/angel/angel1.png" type="Texture" id=38]
-[ext_resource path="res://assets/angel/angel2.png" type="Texture" id=39]
-[ext_resource path="res://assets/angel/angel3.png" type="Texture" id=40]
-[ext_resource path="res://assets/angel/angel4.png" type="Texture" id=41]
-[ext_resource path="res://assets/angel/angel5.png" type="Texture" id=42]
-[ext_resource path="res://assets/angel/angel7.png" type="Texture" id=43]
-[ext_resource path="res://assets/angel/angel6.png" type="Texture" id=44]
-[ext_resource path="res://assets/angel/angel8.png" type="Texture" id=45]
-[ext_resource path="res://assets/un_button.png" type="Texture" id=46]
-[ext_resource path="res://assets/pr_button.png" type="Texture" id=47]
-[ext_resource path="res://assets/sounds/dead.ogg" type="AudioStream" id=48]
-[ext_resource path="res://assets/sounds/Angel.ogg" type="AudioStream" id=49]
-[ext_resource path="res://assets/sounds/341733__setuniman__drum-loop-1m32.smp" type="Sample" id=50]
-[ext_resource path="res://assets/audio.png" type="Texture" id=51]
+[ext_resource path="res://assets/hats/winter.png" type="Texture" id=35]
+[ext_resource path="res://assets/blood.png" type="Texture" id=36]
+[ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=37]
+[ext_resource path="res://scripts/gameover.gd" type="Script" id=38]
+[ext_resource path="res://assets/angel/angel1.png" type="Texture" id=39]
+[ext_resource path="res://assets/angel/angel2.png" type="Texture" id=40]
+[ext_resource path="res://assets/angel/angel3.png" type="Texture" id=41]
+[ext_resource path="res://assets/angel/angel4.png" type="Texture" id=42]
+[ext_resource path="res://assets/angel/angel5.png" type="Texture" id=43]
+[ext_resource path="res://assets/angel/angel7.png" type="Texture" id=44]
+[ext_resource path="res://assets/angel/angel6.png" type="Texture" id=45]
+[ext_resource path="res://assets/angel/angel8.png" type="Texture" id=46]
+[ext_resource path="res://assets/un_button.png" type="Texture" id=47]
+[ext_resource path="res://assets/pr_button.png" type="Texture" id=48]
+[ext_resource path="res://assets/sounds/dead.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/sounds/Angel.ogg" type="AudioStream" id=50]
+[ext_resource path="res://assets/sounds/341733__setuniman__drum-loop-1m32.smp" type="Sample" id=51]
+[ext_resource path="res://assets/audio.png" type="Texture" id=52]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -85,12 +86,12 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.8988, 0.545959 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=7]
 
 animations = [ {
 "frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ) ],
@@ -99,7 +100,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=8]
 
 resource/name = "move_hat"
 length = 0.8
@@ -136,7 +137,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 
 length = 0.2
 loop = false
@@ -192,7 +193,7 @@ tracks/4/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
 length = 0.3
 loop = false
@@ -208,7 +209,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1430 ), Vector2( 0, 1130 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 
 length = 0.3
 loop = false
@@ -224,7 +225,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1130 ), Vector2( 0, 1430 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 
 length = 3.0
 loop = false
@@ -292,22 +293,22 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=13]
 
 animations = [ {
-"frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ) ],
+"frames": [ ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.0
 } ]
 
-[sub_resource type="SampleLibrary" id=13]
+[sub_resource type="SampleLibrary" id=14]
 
 samples/jungledrum = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 50 )
+"sample": ExtResource( 51 )
 }
 
 [node name="Game" type="Node2D"]
@@ -511,6 +512,7 @@ transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
 frames = SubResource( 4 )
 animation = "default"
+frame = 2
 playing = true
 
 [node name="HatShakeArms" type="Sprite" parent="Player/ShakeArms"]
@@ -544,7 +546,7 @@ frame = 4
 editor/display_folded = true
 transform/pos = Vector2( 3.47946, 78.3281 )
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -554,7 +556,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Foot"]
 
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
@@ -562,20 +564,20 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -4, -2.76767 )
 transform/scale = Vector2( 0.435292, 0.435292 )
-frames = SubResource( 14 )
+frames = SubResource( 7 )
 animation = "default"
 
 [node name="Hat" type="Sprite" parent="Player/AnimatedSprite"]
 
 transform/pos = Vector2( -5.52887, -0.949341 )
-texture = ExtResource( 15 )
+texture = ExtResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/move_hat = SubResource( 15 )
+anims/move_hat = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -593,9 +595,9 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/die = SubResource( 8 )
-anims/lowerteetgoingup = SubResource( 9 )
-anims/lowerteethgoingdown = SubResource( 10 )
+anims/die = SubResource( 9 )
+anims/lowerteetgoingup = SubResource( 10 )
+anims/lowerteethgoingdown = SubResource( 11 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -607,7 +609,7 @@ visibility/visible = false
 transform/pos = Vector2( 386.147, 775.346 )
 transform/rot = 45.0
 transform/scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 35 )
+texture = ExtResource( 36 )
 
 [node name="ControlScore" type="Control" parent="."]
 
@@ -632,7 +634,7 @@ margin/left = 6.0
 margin/top = 0.0
 margin/right = 114.0
 margin/bottom = 190.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 custom_colors/font_color = Color( 1, 0.87451, 0, 1 )
 text = "0"
 percent_visible = 1.0
@@ -651,7 +653,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = ExtResource( 37 )
+script/script = ExtResource( 38 )
 
 [node name="Game Over" type="Label" parent="GameOverScreen"]
 
@@ -664,7 +666,7 @@ margin/left = 12.0
 margin/top = 136.0
 margin/right = 884.0
 margin/bottom = 326.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 text = "Game Over"
 percent_visible = 1.0
 lines_skipped = 0
@@ -675,7 +677,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/gameover = SubResource( 11 )
+anims/gameover = SubResource( 12 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -686,7 +688,7 @@ autoplay = ""
 editor/display_folded = true
 transform/pos = Vector2( 360, 400 )
 transform/scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 12 )
+frames = SubResource( 13 )
 animation = "default"
 playing = true
 
@@ -709,8 +711,8 @@ margin/bottom = 665.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 46 )
-textures/pressed = ExtResource( 47 )
+textures/normal = ExtResource( 47 )
+textures/pressed = ExtResource( 48 )
 params/resize_mode = 0
 params/scale = Vector2( 0.8, 0.6 )
 params/stretch_mode = 0
@@ -726,7 +728,7 @@ margin/left = 45.0
 margin/top = 22.0
 margin/right = 890.0
 margin/bottom = 212.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 text = "Play Again"
 percent_visible = 1.0
 lines_skipped = 0
@@ -746,8 +748,8 @@ margin/bottom = 835.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 46 )
-textures/pressed = ExtResource( 47 )
+textures/normal = ExtResource( 47 )
+textures/pressed = ExtResource( 48 )
 params/resize_mode = 0
 params/scale = Vector2( 0.6, 0.6 )
 params/stretch_mode = 0
@@ -763,7 +765,7 @@ margin/left = 64.0
 margin/top = 7.0
 margin/right = 487.0
 margin/bottom = 197.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 text = "Menu"
 percent_visible = 1.0
 lines_skipped = 0
@@ -783,8 +785,8 @@ margin/bottom = 1005.8
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 46 )
-textures/pressed = ExtResource( 47 )
+textures/normal = ExtResource( 47 )
+textures/pressed = ExtResource( 48 )
 params/resize_mode = 0
 params/scale = Vector2( 0.6, 0.6 )
 params/stretch_mode = 0
@@ -800,7 +802,7 @@ margin/left = 94.0
 margin/top = 7.0
 margin/right = 386.0
 margin/bottom = 197.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 text = "Exit"
 percent_visible = 1.0
 lines_skipped = 0
@@ -808,7 +810,7 @@ max_lines_visible = -1
 
 [node name="SomDie" type="StreamPlayer" parent="GameOverScreen"]
 
-stream/stream = ExtResource( 48 )
+stream/stream = ExtResource( 49 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -819,7 +821,7 @@ stream/buffering_ms = 500
 
 [node name="SomAngel" type="StreamPlayer" parent="GameOverScreen"]
 
-stream/stream = ExtResource( 49 )
+stream/stream = ExtResource( 50 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -839,7 +841,7 @@ margin/left = 19.0
 margin/top = 1100.0
 margin/right = 956.0
 margin/bottom = 1290.0
-custom_fonts/font = ExtResource( 36 )
+custom_fonts/font = ExtResource( 37 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -854,7 +856,7 @@ playback/speed = 1.0
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 13 )
+config/samples = SubResource( 14 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -881,7 +883,7 @@ margin/bottom = 357.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 51 )
+textures/normal = ExtResource( 52 )
 params/resize_mode = 0
 params/stretch_mode = 0
 

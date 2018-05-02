@@ -343,8 +343,8 @@ func _on_TimerOpenMouth_timeout():
 		playerInFearSprite.show()
 
 func set_hat():
-	#var hat = preload("res://assets/hats/viking.png")
-	var hat = preload("res://assets/hats/default.png")
+	var hat = preload("res://assets/hats/winter.png")
+	#var hat = preload("res://assets/hats/default.png")
 	get_node("Player/AnimatedSprite/Hat").set_texture(hat)
 	get_node("Player/ShakeArms/HatShakeArms").set_texture(hat)
 	get_node("Player/PlayerScared/HatPlayerScared").set_texture(hat)
