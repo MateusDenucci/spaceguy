@@ -111,30 +111,30 @@ tracks/0/path = NodePath("AnimatedSprite/Hat:transform/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.3, 0.4, 0.8 ),
-"transitions": FloatArray( 1, 1, 1, 1 ),
+"times": FloatArray( 0, 0.1, 0.3, 0.4, 0.8 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -5.52887, -0.949341 ), Vector2( -5.52887, 1.73364 ), Vector2( -5.52887, 2.53857 ), Vector2( -5.52887, -0.949341 ) ]
+"values": [ Vector2( -5.52887, -0.949341 ), Vector2( -5.52887, 1.34796 ), Vector2( -3.23156, 2.98889 ), Vector2( -3.69102, 4.49855 ), Vector2( -5.52887, -0.949341 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("AnimatedSprite:playing")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
+"times": FloatArray(  ),
+"transitions": FloatArray(  ),
 "update": 1,
-"values": [ true ]
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -690,6 +690,7 @@ transform/pos = Vector2( 360, 400 )
 transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 13 )
 animation = "default"
+frame = 3
 playing = true
 
 [node name="HatAngel" type="Sprite" parent="GameOverScreen/AnimatedSprite"]
