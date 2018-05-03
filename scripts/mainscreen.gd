@@ -23,3 +23,6 @@ func hideScene():
 	
 func _on_Timer_timeout():
 	hideScene()
+
+func _on_HatStore_pressed():
+	transition.fade_to("res://scenes/hatstore.tscn")

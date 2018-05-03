@@ -63,7 +63,7 @@ var offsetYTopTeeth = 300
 #### Highscore
 var save_file = File.new()
 var save_path = "user://savegame.save"
-var save_data = {"highscore":0}
+var save_data = {"highscore":0, "hat":'default'}
 
 func _ready():
 	set_hat()
@@ -80,7 +80,7 @@ func _ready():
 	if not save_file.file_exists(save_path):
 		create_save()
 	else:
-		read()
+		highscore = read("highscore")
 				
 
 func create_save():
@@ -94,11 +94,11 @@ func save():
 	save_file.store_var(save_data)
 	save_file.close()
 	
-func read():
+func read(attr):
 	save_file.open(save_path, File.READ)
 	save_data = save_file.get_var()
 	save_file.close()
-	highscore = save_data["highscore"]
+	return save_data[attr]
 
 
 func vibrate():
@@ -343,7 +343,8 @@ func _on_TimerOpenMouth_timeout():
 		playerInFearSprite.show()
 
 func set_hat():
-	var hat = preload("res://assets/hats/winter.png")
+	var active_hat = "res://assets/hats/"+read("hat")+".png"
+	var hat = load(active_hat)
 	#var hat = preload("res://assets/hats/default.png")
 	get_node("Player/AnimatedSprite/Hat").set_texture(hat)
 	get_node("Player/ShakeArms/HatShakeArms").set_texture(hat)

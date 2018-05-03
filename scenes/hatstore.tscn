@@ -1,0 +1,537 @@
+[gd_scene load_steps=15 format=1]
+
+[ext_resource path="res://scripts/hatstore.gd" type="Script" id=1]
+[ext_resource path="res://assets/store_background.png" type="Texture" id=2]
+[ext_resource path="res://assets/store_content.png" type="Texture" id=3]
+[ext_resource path="res://assets/hats/default.png" type="Texture" id=4]
+[ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://assets/checkmark.png" type="Texture" id=6]
+[ext_resource path="res://assets/hats/winter.png" type="Texture" id=7]
+[ext_resource path="res://assets/hats/cap.png" type="Texture" id=8]
+[ext_resource path="res://assets/hats/viking.png" type="Texture" id=9]
+[ext_resource path="res://assets/hats/santa.png" type="Texture" id=10]
+[ext_resource path="res://assets/hats/pirate.png" type="Texture" id=11]
+[ext_resource path="res://assets/hats/king.png" type="Texture" id=12]
+[ext_resource path="res://assets/un_button.png" type="Texture" id=13]
+[ext_resource path="res://assets/pr_button.png" type="Texture" id=14]
+
+[node name="Control" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 170.0
+margin/right = 720.0
+margin/bottom = 1250.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 1680.0
+custom_constants/separation = 240
+alignment = 0
+
+[node name="default" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="IndianaBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/default"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 720.0
+margin/bottom = 255.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/default"]
+
+transform/pos = Vector2( 125.529, 217.583 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/default"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 277.0
+margin/top = 98.0
+margin/right = 873.0
+margin/bottom = 288.0
+custom_fonts/font = ExtResource( 5 )
+text = "Indiana"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/default"]
+
+visibility/visible = false
+transform/pos = Vector2( 202.652, 78.1863 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="winter" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 240.0
+margin/right = 0.0
+margin/bottom = 240.0
+
+[node name="WinterBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/winter"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 720.0
+margin/bottom = 255.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/winter"]
+
+transform/pos = Vector2( 117.16, 217.583 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/winter"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 278.0
+margin/top = 106.0
+margin/right = 798.0
+margin/bottom = 296.0
+custom_fonts/font = ExtResource( 5 )
+text = "Winter"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/winter"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 83.6645 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="cap" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 480.0
+margin/right = 0.0
+margin/bottom = 480.0
+
+[node name="CapBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/cap"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 720.0
+margin/bottom = 255.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/cap"]
+
+transform/pos = Vector2( 103.212, 198.056 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/cap"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 278.0
+margin/top = 98.0
+margin/right = 798.0
+margin/bottom = 288.0
+custom_fonts/font = ExtResource( 5 )
+text = "Cap"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/cap"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 80.774 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="viking" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 720.0
+margin/right = 0.0
+margin/bottom = 720.0
+
+[node name="VikingBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/viking"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 720.0
+margin/bottom = 255.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/viking"]
+
+transform/pos = Vector2( 109.394, 225.635 )
+texture = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/viking"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 278.0
+margin/top = 101.0
+margin/right = 798.0
+margin/bottom = 291.0
+custom_fonts/font = ExtResource( 5 )
+text = "Viking"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/viking"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 77.8837 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="santa" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 960.0
+margin/right = 0.0
+margin/bottom = 960.0
+
+[node name="SantaBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/santa"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/santa"]
+
+transform/pos = Vector2( 110.802, 220.098 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/santa"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 278.0
+margin/top = 91.0
+margin/right = 798.0
+margin/bottom = 281.0
+custom_fonts/font = ExtResource( 5 )
+text = "Santa"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/santa"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 80.0989 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="pirate" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 1200.0
+margin/right = 0.0
+margin/bottom = 1200.0
+
+[node name="PirateBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/pirate"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/pirate"]
+
+transform/pos = Vector2( 118.392, 212.509 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/pirate"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 278.0
+margin/top = 91.0
+margin/right = 798.0
+margin/bottom = 281.0
+custom_fonts/font = ExtResource( 5 )
+text = "Pirate"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/pirate"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 78.1854 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="king" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 1440.0
+margin/right = 0.0
+margin/bottom = 1440.0
+
+[node name="KingBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/king"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 720.0
+margin/bottom = 255.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/king"]
+
+transform/pos = Vector2( 116.912, 215.763 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/king"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 285.0
+margin/top = 90.0
+margin/right = 805.0
+margin/bottom = 280.0
+custom_fonts/font = ExtResource( 5 )
+text = "King"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/king"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 75.8818 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="garbage" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 1680.0
+margin/right = 0.0
+margin/bottom = 1680.0
+
+[node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/garbage"]
+
+visibility/visible = false
+transform/pos = Vector2( 185.915, 75.8818 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="MenuButton" type="TextureButton" parent="."]
+
+editor/display_folded = true
+rect/scale = Vector2( 0.6, 0.6 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -11.0
+margin/top = 15.0
+margin/right = 612.0
+margin/bottom = 258.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 13 )
+textures/pressed = ExtResource( 14 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="MenuButton"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 96.0
+margin/top = 15.0
+margin/right = 557.0
+margin/bottom = 205.0
+custom_fonts/font = ExtResource( 5 )
+text = "MENU"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/default/IndianaBtn" to="." method="_on_IndianaBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/winter/WinterBtn" to="." method="_on_WinterBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/cap/CapBtn" to="." method="_on_CapBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/viking/VikingBtn" to="." method="_on_VikingBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/santa/SantaBtn" to="." method="_on_SantaBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/pirate/PirateBtn" to="." method="_on_PirateBtn_pressed"]
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/king/KingBtn" to="." method="_on_KingBtn_pressed"]
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
+
+
