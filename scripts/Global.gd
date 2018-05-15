@@ -2,11 +2,16 @@ extends Node
 
 var save_file = File.new()
 var save_path = "user://savegame.save"
-var save_data = {"highscore":0, 'hat':'default'}
+var save_data = {
+	"highscore":0,
+ 	'hat':'default',
+	'coins': 0,
+	'open_hats': [1,1,0,0,0,0,0]
+}
 
 func _ready():
-	#var dir = Directory.new()
-	#dir.remove("user://savegame.save")
+#	var dir = Directory.new()
+#	dir.remove("user://savegame.save")
 	if not save_file.file_exists(save_path):
 		create_save()
 	read()

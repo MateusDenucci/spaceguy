@@ -13,6 +13,17 @@ func _ready():
 		admob.init(isReal, get_instance_ID())
 		loadRewardedVideo()
 	mark_current_hat()
+	open_hats()
+	
+func open_hats():
+	var open_hats = Global.save_data['open_hats']
+	var all_hats = get_node("ScrollContainer/VBoxContainer").get_children()
+	var btn
+	for i in range(open_hats.size()):
+		btn = all_hats[i].get_children()[0]
+		print(open_hats[i])
+		if open_hats[i] == 0:
+			btn.set_disabled(true)
 
 func _on_MenuButton_pressed():
 	transition.fade_to("res://scenes/mainscreen.tscn")

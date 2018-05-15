@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/store_background.png" type="Texture" id=2]
 [ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://assets/store_content.png" type="Texture" id=4]
-[ext_resource path="res://assets/hats/default.png" type="Texture" id=5]
-[ext_resource path="res://assets/checkmark.png" type="Texture" id=6]
-[ext_resource path="res://assets/hats/winter.png" type="Texture" id=7]
-[ext_resource path="res://assets/store_content_disabled.png" type="Texture" id=8]
+[ext_resource path="res://assets/store_content_disabled.png" type="Texture" id=5]
+[ext_resource path="res://assets/hats/default.png" type="Texture" id=6]
+[ext_resource path="res://assets/checkmark.png" type="Texture" id=7]
+[ext_resource path="res://assets/hats/winter.png" type="Texture" id=8]
 [ext_resource path="res://assets/hats/cap.png" type="Texture" id=9]
 [ext_resource path="res://assets/hats/viking.png" type="Texture" id=10]
 [ext_resource path="res://assets/hats/santa.png" type="Texture" id=11]
@@ -64,7 +64,6 @@ scroll/vertical = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -72,7 +71,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
-margin/bottom = 1680.0
+margin/bottom = 1440.0
 custom_constants/separation = 240
 alignment = 0
 
@@ -102,13 +101,14 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/default"]
 
 transform/pos = Vector2( 125.529, 217.583 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/default"]
 
@@ -132,7 +132,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 202.652, 78.1863 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="winter" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -160,13 +160,14 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/winter"]
 
 transform/pos = Vector2( 117.16, 217.583 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/winter"]
 
@@ -190,11 +191,12 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 83.6645 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="cap" type="Control" parent="ScrollContainer/VBoxContainer"]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -219,7 +221,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
-textures/disabled = ExtResource( 8 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -250,7 +252,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 80.774 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="viking" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -260,9 +262,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 720.0
+margin/top = 480.0
 margin/right = 0.0
-margin/bottom = 720.0
+margin/bottom = 480.0
 
 [node name="VikingBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/viking"]
 
@@ -278,6 +280,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -308,7 +311,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 77.8837 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="santa" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -318,9 +321,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 960.0
+margin/top = 720.0
 margin/right = 0.0
-margin/bottom = 960.0
+margin/bottom = 720.0
 
 [node name="SantaBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/santa"]
 
@@ -336,6 +339,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -366,7 +370,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 80.0989 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="pirate" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -376,9 +380,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 1200.0
+margin/top = 960.0
 margin/right = 0.0
-margin/bottom = 1200.0
+margin/bottom = 960.0
 
 [node name="PirateBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/pirate"]
 
@@ -394,6 +398,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -424,7 +429,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 78.1854 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="king" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -434,9 +439,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 1440.0
+margin/top = 1200.0
 margin/right = 0.0
-margin/bottom = 1440.0
+margin/bottom = 1200.0
 
 [node name="KingBtn" type="TextureButton" parent="ScrollContainer/VBoxContainer/king"]
 
@@ -452,6 +457,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -482,7 +488,7 @@ max_lines_visible = -1
 visibility/visible = false
 transform/pos = Vector2( 185.915, 75.8818 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="garbage" type="Control" parent="ScrollContainer/VBoxContainer"]
 
@@ -492,16 +498,16 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 1680.0
+margin/top = 1440.0
 margin/right = 0.0
-margin/bottom = 1680.0
+margin/bottom = 1440.0
 
 [node name="Checkmark" type="Sprite" parent="ScrollContainer/VBoxContainer/garbage"]
 
 visibility/visible = false
 transform/pos = Vector2( 185.915, 75.8818 )
 transform/scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="MenuButton" type="TextureButton" parent="."]
 
@@ -638,7 +644,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
-textures/disabled = ExtResource( 8 )
+textures/disabled = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
