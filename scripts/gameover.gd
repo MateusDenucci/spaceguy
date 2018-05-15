@@ -19,6 +19,7 @@ func _ready():
 		admob = Globals.get_singleton("AdMob")
 		admob.init(isReal, get_instance_ID())
 		loadInterstitial()
+		loadRewardedVideo()
 	#set_process_input(true)
 	
 
@@ -63,3 +64,6 @@ func ativarBotoes():
 	exitButton.set("disabled", false)
 	
 
+func _on_rewarded_video_ad_loaded():
+	Global.disable_btn = false
+	#get_node("CoinsScreen/GetCoins").set_disabled(false)

@@ -9,6 +9,7 @@ var active_hat = Global.save_data["hat"]
 
 
 func _ready():
+	get_node("CoinsScreen/GetCoins").set_disabled(Global.disable_btn)
 	if(Globals.has_singleton("AdMob")):
 		admob = Globals.get_singleton("AdMob")
 		admob.init(isReal, get_instance_ID())
@@ -90,6 +91,7 @@ func _on_CoinsButton_pressed():
 	
 func _on_rewarded_video_ad_loaded():
 	get_node("CoinsScreen/GetCoins").set_disabled(false)
+	Global.disable_btn = false
 	
 func _on_rewarded_video_ad_closed():
 	get_node("CoinsScreen/GetCoins").set_disabled(true)

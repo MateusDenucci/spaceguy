@@ -1,5 +1,6 @@
 extends Node
 
+var disable_btn = true
 var save_file = File.new()
 var save_path = "user://savegame.save"
 var save_data = {
