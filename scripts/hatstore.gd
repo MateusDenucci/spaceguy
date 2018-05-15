@@ -7,21 +7,23 @@ var adRewardedId = "ca-app-pub-3940256099942544/5224354917" # [There is no testi
 onready var options = get_node("ScrollContainer/VBoxContainer")
 var active_hat = Global.save_data["hat"]
 
+
 func _ready():
 	if(Globals.has_singleton("AdMob")):
 		admob = Globals.get_singleton("AdMob")
 		admob.init(isReal, get_instance_ID())
 		loadRewardedVideo()
+		
 	mark_current_hat()
 	open_hats()
-	
+	set_coins()
+
 func open_hats():
 	var open_hats = Global.save_data['open_hats']
 	var all_hats = get_node("ScrollContainer/VBoxContainer").get_children()
 	var btn
 	for i in range(open_hats.size()):
 		btn = all_hats[i].get_children()[0]
-		print(open_hats[i])
 		if open_hats[i] == 0:
 			btn.set_disabled(true)
 
@@ -85,7 +87,6 @@ func _on_KingBtn_pressed():
 func _on_CoinsButton_pressed():
 	get_node("ScrollContainer").hide()
 	get_node("CoinsScreen").show()
-	loadRewardedVideo()
 	
 func _on_rewarded_video_ad_loaded():
 	get_node("CoinsScreen/GetCoins").set_disabled(false)
@@ -95,10 +96,13 @@ func _on_rewarded_video_ad_closed():
 	loadRewardedVideo()
 	
 func _on_rewarded(currency, amount):
-	get_node("QtdCoins").set_text(str(amount))
+	var total = Global.save_data['coins'] + (amount/10)
+	Global.save("coins",total)
+	set_coins()
 
+func set_coins():
+	get_node("QtdCoins").set_text(str(Global.save_data['coins']))
 
 func _on_GetCoins_pressed():
 	if admob != null:
 		admob.showRewardedVideo()
-

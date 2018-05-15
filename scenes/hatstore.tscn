@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=28 format=1]
 
 [ext_resource path="res://scripts/hatstore.gd" type="Script" id=1]
 [ext_resource path="res://assets/store_background.png" type="Texture" id=2]
@@ -15,6 +15,26 @@
 [ext_resource path="res://assets/hats/king.png" type="Texture" id=13]
 [ext_resource path="res://assets/un_button.png" type="Texture" id=14]
 [ext_resource path="res://assets/pr_button.png" type="Texture" id=15]
+[ext_resource path="res://assets/grobold_50_green.fnt" type="BitmapFont" id=16]
+[ext_resource path="res://assets/coin/Gold_21.png" type="Texture" id=17]
+[ext_resource path="res://assets/coin/Gold_22.png" type="Texture" id=18]
+[ext_resource path="res://assets/coin/Gold_23.png" type="Texture" id=19]
+[ext_resource path="res://assets/coin/Gold_24.png" type="Texture" id=20]
+[ext_resource path="res://assets/coin/Gold_25.png" type="Texture" id=21]
+[ext_resource path="res://assets/coin/Gold_26.png" type="Texture" id=22]
+[ext_resource path="res://assets/coin/Gold_27.png" type="Texture" id=23]
+[ext_resource path="res://assets/coin/Gold_28.png" type="Texture" id=24]
+[ext_resource path="res://assets/coin/Gold_29.png" type="Texture" id=25]
+[ext_resource path="res://assets/coin/Gold_30.png" type="Texture" id=26]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [node name="Control" type="Control"]
 
@@ -40,17 +60,19 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 601.0
-margin/top = 19.0
-margin/right = 792.0
-margin/bottom = 209.0
+margin/left = 574.0
+margin/top = 17.0
+margin/right = 773.0
+margin/bottom = 207.0
 custom_fonts/font = ExtResource( 3 )
+text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -584,6 +606,7 @@ max_lines_visible = -1
 
 [node name="CoinsScreen" type="Control" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -630,6 +653,7 @@ max_lines_visible = -1
 
 [node name="GetCoins" type="TextureButton" parent="CoinsScreen"]
 
+editor/display_folded = true
 rect/scale = Vector2( 0.7, 0.7 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -664,6 +688,32 @@ text = "GET COINS"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Debug" type="Label" parent="CoinsScreen"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 940.0
+margin/right = 268.0
+margin/bottom = 1059.0
+custom_fonts/font = ExtResource( 16 )
+text = "Teste"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+transform/pos = Vector2( 683.899, 54.5301 )
+transform/scale = Vector2( 0.1, 0.1 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
 
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/default/IndianaBtn" to="." method="_on_IndianaBtn_pressed"]
 
