@@ -1,85 +1,93 @@
 extends Control
 
-onready var options = get_node("ScrollContainer/VBoxContainer")
+var admob = null
+var isReal = false
+var adRewardedId = "ca-app-pub-3940256099942544/5224354917" # [There is no testing option for rewarded videos, so you can use this id for testing]
 
-var save_file = File.new()
-var save_path = "user://savegame.save"
-var save_data = {"highscore":0, 'hat':'default'}
+onready var options = get_node("ScrollContainer/VBoxContainer")
+var active_hat = Global.save_data["hat"]
 
 func _ready():
-	#var dir = Directory.new()
-	#dir.remove("user://savegame.save")
-	if not save_file.file_exists(save_path):
-		create_save()
+	if(Globals.has_singleton("AdMob")):
+		admob = Globals.get_singleton("AdMob")
+		admob.init(isReal, get_instance_ID())
+		loadRewardedVideo()
 	mark_current_hat()
 
 func _on_MenuButton_pressed():
 	transition.fade_to("res://scenes/mainscreen.tscn")
 
+func loadRewardedVideo():
+	if admob != null:
+		admob.loadRewardedVideo(adRewardedId)
 
-func create_save():
-	save_file.open(save_path, File.WRITE)
-	save_file.store_var(save_data)
-	save_file.close()
-	
-func save(attr,data):
-	save_data[attr] = data
-	save_file.open(save_path,File.WRITE)
-	save_file.store_var(save_data)
-	save_file.close()
-	
-func read(attr):
-	save_file.open(save_path, File.READ)
-	save_data = save_file.get_var()
-	save_file.close()
-	return save_data[str(attr)]
-	
 
 func mark_current_hat():
-	var active_hat = read("hat")
 	options.get_node(active_hat+"/Checkmark").show()
 
 func unmark_current_hat():
-	var active_hat = read("hat")
+	active_hat = Global.save_data["hat"]
 	options.get_node(active_hat+"/Checkmark").hide()
 
 func _on_IndianaBtn_pressed():
 	unmark_current_hat()
 	options.get_node("default/Checkmark").show()
-	save("hat","default")
+	Global.save("hat","default")
 	
 
 func _on_WinterBtn_pressed():
 	unmark_current_hat()
 	options.get_node("winter/Checkmark").show()
-	save("hat","winter")
+	Global.save("hat","winter")
 
 
 func _on_CapBtn_pressed():
 	unmark_current_hat()
 	options.get_node("cap/Checkmark").show()
-	save("hat","cap")
+	Global.save("hat","cap")
 
 
 func _on_VikingBtn_pressed():
 	unmark_current_hat()
 	options.get_node("viking/Checkmark").show()
-	save("hat","viking")
+	Global.save("hat","viking")
 
 
 func _on_SantaBtn_pressed():
 	unmark_current_hat()
 	options.get_node("santa/Checkmark").show()
-	save("hat","santa")
+	Global.save("hat","santa")
 
 
 func _on_PirateBtn_pressed():
 	unmark_current_hat()
 	options.get_node("pirate/Checkmark").show()
-	save("hat","pirate")
+	Global.save("hat","pirate")
 
 
 func _on_KingBtn_pressed():
 	unmark_current_hat()
 	options.get_node("king/Checkmark").show()
-	save("hat","king")
+	Global.save("hat","king")
+
+
+func _on_CoinsButton_pressed():
+	get_node("ScrollContainer").hide()
+	get_node("CoinsScreen").show()
+	loadRewardedVideo()
+	
+func _on_rewarded_video_ad_loaded():
+	get_node("CoinsScreen/GetCoins").set_disabled(false)
+	
+func _on_rewarded_video_ad_closed():
+	get_node("CoinsScreen/GetCoins").set_disabled(true)
+	loadRewardedVideo()
+	
+func _on_rewarded(currency, amount):
+	get_node("QtdCoins").set_text(str(amount))
+
+
+func _on_GetCoins_pressed():
+	if admob != null:
+		admob.showRewardedVideo()
+

@@ -42,7 +42,7 @@ var goDown = false
 var avaible_spaces
 var sprite_player_size = 180
 var score = 0
-var highscore = 0
+var highscore = Global.save_data['highscore']
 var song_is_playing = true
 
 var initialVibration = 0.5
@@ -60,10 +60,7 @@ var closeMouth = false
 var offsetYTopTeeth = 300
 
 
-#### Highscore
-var save_file = File.new()
-var save_path = "user://savegame.save"
-var save_data = {"highscore":0, "hat":'default'}
+
 
 func _ready():
 	set_hat()
@@ -76,29 +73,6 @@ func _ready():
 	avaible_spaces = get_avaible_spaces()
 	random_height()	
 	play()
-	
-	if not save_file.file_exists(save_path):
-		create_save()
-	else:
-		highscore = read("highscore")
-				
-
-func create_save():
-	save_file.open(save_path, File.WRITE)
-	save_file.store_var(save_data)
-	save_file.close()
-	
-func save():
-	save_data["highscore"] = highscore
-	save_file.open(save_path,File.WRITE)
-	save_file.store_var(save_data)
-	save_file.close()
-	
-func read(attr):
-	save_file.open(save_path, File.READ)
-	save_data = save_file.get_var()
-	save_file.close()
-	return save_data[attr]
 
 
 func vibrate():
@@ -315,7 +289,7 @@ func gameover():
 	
 	if(score > highscore):
 		highscore = score
-		save()
+		Global.save('highscore',highscore)
 	gameOver = true
 	player.hide()
 	get_node("Control").hide()
@@ -343,7 +317,7 @@ func _on_TimerOpenMouth_timeout():
 		playerInFearSprite.show()
 
 func set_hat():
-	var active_hat = "res://assets/hats/"+read("hat")+".png"
+	var active_hat = "res://assets/hats/"+Global.save_data["hat"]+".png"
 	var hat = load(active_hat)
 	#var hat = preload("res://assets/hats/default.png")
 	get_node("Player/AnimatedSprite/Hat").set_texture(hat)

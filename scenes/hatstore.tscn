@@ -1,19 +1,20 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scripts/hatstore.gd" type="Script" id=1]
 [ext_resource path="res://assets/store_background.png" type="Texture" id=2]
-[ext_resource path="res://assets/store_content.png" type="Texture" id=3]
-[ext_resource path="res://assets/hats/default.png" type="Texture" id=4]
-[ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://assets/grobold_160_green.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://assets/store_content.png" type="Texture" id=4]
+[ext_resource path="res://assets/hats/default.png" type="Texture" id=5]
 [ext_resource path="res://assets/checkmark.png" type="Texture" id=6]
 [ext_resource path="res://assets/hats/winter.png" type="Texture" id=7]
-[ext_resource path="res://assets/hats/cap.png" type="Texture" id=8]
-[ext_resource path="res://assets/hats/viking.png" type="Texture" id=9]
-[ext_resource path="res://assets/hats/santa.png" type="Texture" id=10]
-[ext_resource path="res://assets/hats/pirate.png" type="Texture" id=11]
-[ext_resource path="res://assets/hats/king.png" type="Texture" id=12]
-[ext_resource path="res://assets/un_button.png" type="Texture" id=13]
-[ext_resource path="res://assets/pr_button.png" type="Texture" id=14]
+[ext_resource path="res://assets/store_content_disabled.png" type="Texture" id=8]
+[ext_resource path="res://assets/hats/cap.png" type="Texture" id=9]
+[ext_resource path="res://assets/hats/viking.png" type="Texture" id=10]
+[ext_resource path="res://assets/hats/santa.png" type="Texture" id=11]
+[ext_resource path="res://assets/hats/pirate.png" type="Texture" id=12]
+[ext_resource path="res://assets/hats/king.png" type="Texture" id=13]
+[ext_resource path="res://assets/un_button.png" type="Texture" id=14]
+[ext_resource path="res://assets/pr_button.png" type="Texture" id=15]
 
 [node name="Control" type="Control"]
 
@@ -32,9 +33,24 @@ script/script = ExtResource( 1 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="QtdCoins" type="Label" parent="."]
+
+rect/scale = Vector2( 0.4, 0.4 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 601.0
+margin/top = 19.0
+margin/right = 792.0
+margin/bottom = 209.0
+custom_fonts/font = ExtResource( 3 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -85,14 +101,14 @@ margin/bottom = 255.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/default"]
 
 transform/pos = Vector2( 125.529, 217.583 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/default"]
 
@@ -105,7 +121,7 @@ margin/left = 277.0
 margin/top = 98.0
 margin/right = 873.0
 margin/bottom = 288.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Indiana"
 percent_visible = 1.0
 lines_skipped = 0
@@ -143,7 +159,7 @@ margin/bottom = 255.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -163,7 +179,7 @@ margin/left = 278.0
 margin/top = 106.0
 margin/right = 798.0
 margin/bottom = 296.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Winter"
 percent_visible = 1.0
 lines_skipped = 0
@@ -198,17 +214,19 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 720.0
 margin/bottom = 255.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 8 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/cap"]
 
 transform/pos = Vector2( 103.212, 198.056 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/cap"]
 
@@ -221,7 +239,7 @@ margin/left = 278.0
 margin/top = 98.0
 margin/right = 798.0
 margin/bottom = 288.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Cap"
 percent_visible = 1.0
 lines_skipped = 0
@@ -259,14 +277,14 @@ margin/bottom = 255.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/viking"]
 
 transform/pos = Vector2( 109.394, 225.635 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/viking"]
 
@@ -279,7 +297,7 @@ margin/left = 278.0
 margin/top = 101.0
 margin/right = 798.0
 margin/bottom = 291.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Viking"
 percent_visible = 1.0
 lines_skipped = 0
@@ -317,14 +335,14 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/santa"]
 
 transform/pos = Vector2( 110.802, 220.098 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/santa"]
 
@@ -337,7 +355,7 @@ margin/left = 278.0
 margin/top = 91.0
 margin/right = 798.0
 margin/bottom = 281.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Santa"
 percent_visible = 1.0
 lines_skipped = 0
@@ -375,14 +393,14 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/pirate"]
 
 transform/pos = Vector2( 118.392, 212.509 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/pirate"]
 
@@ -395,7 +413,7 @@ margin/left = 278.0
 margin/top = 91.0
 margin/right = 798.0
 margin/bottom = 281.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Pirate"
 percent_visible = 1.0
 lines_skipped = 0
@@ -433,14 +451,14 @@ margin/bottom = 255.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 3 )
+textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
 [node name="Hat" type="Sprite" parent="ScrollContainer/VBoxContainer/king"]
 
 transform/pos = Vector2( 116.912, 215.763 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/king"]
 
@@ -453,7 +471,7 @@ margin/left = 285.0
 margin/top = 90.0
 margin/right = 805.0
 margin/bottom = 280.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "King"
 percent_visible = 1.0
 lines_skipped = 0
@@ -488,7 +506,7 @@ texture = ExtResource( 6 )
 [node name="MenuButton" type="TextureButton" parent="."]
 
 editor/display_folded = true
-rect/scale = Vector2( 0.6, 0.6 )
+rect/scale = Vector2( 0.4, 0.4 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -500,8 +518,8 @@ margin/bottom = 258.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 13 )
-textures/pressed = ExtResource( 14 )
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -511,12 +529,132 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 96.0
-margin/top = 15.0
-margin/right = 557.0
-margin/bottom = 205.0
-custom_fonts/font = ExtResource( 5 )
+margin/left = 87.0
+margin/top = 17.0
+margin/right = 548.0
+margin/bottom = 207.0
+custom_fonts/font = ExtResource( 3 )
 text = "MENU"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CoinsButton" type="TextureButton" parent="."]
+
+editor/display_folded = true
+rect/scale = Vector2( 0.4, 0.4 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 243.0
+margin/top = 15.0
+margin/right = 866.0
+margin/bottom = 258.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="CoinsButton"]
+
+rect/scale = Vector2( 0.9, 0.9 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 83.0
+margin/top = 16.0
+margin/right = 601.0
+margin/bottom = 206.0
+custom_fonts/font = ExtResource( 3 )
+text = "COINS"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CoinsScreen" type="Control" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Label" type="Label" parent="CoinsScreen"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 9.0
+margin/top = 361.0
+margin/right = 5357.0
+margin/bottom = 551.0
+custom_fonts/font = ExtResource( 3 )
+text = "Click on the button to watch"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label 2" type="Label" parent="CoinsScreen"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -6.0
+margin/top = 426.0
+margin/right = 2741.0
+margin/bottom = 616.0
+custom_fonts/font = ExtResource( 3 )
+text = " the video and earn coins!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="GetCoins" type="TextureButton" parent="CoinsScreen"]
+
+rect/scale = Vector2( 0.7, 0.7 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 94.0
+margin/top = 686.0
+margin/right = 814.0
+margin/bottom = 941.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+textures/disabled = ExtResource( 8 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="CoinsScreen/GetCoins"]
+
+rect/scale = Vector2( 0.6, 0.6 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 97.0
+margin/top = 66.0
+margin/right = 971.0
+margin/bottom = 256.0
+custom_fonts/font = ExtResource( 3 )
+text = "GET COINS"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -536,5 +674,9 @@ max_lines_visible = -1
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/king/KingBtn" to="." method="_on_KingBtn_pressed"]
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]
+
+[connection signal="pressed" from="CoinsButton" to="." method="_on_CoinsButton_pressed"]
+
+[connection signal="pressed" from="CoinsScreen/GetCoins" to="." method="_on_GetCoins_pressed"]
 
 
