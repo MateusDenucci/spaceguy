@@ -7,7 +7,7 @@ var save_data = {
 	"highscore":0,
  	'hat':'default',
 	'coins': 0,
-	'open_hats': [1,1,0,0,0,0,0]
+	'open_hats': [1,0,0,0,0,0,0]
 }
 
 func _ready():

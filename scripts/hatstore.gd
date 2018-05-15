@@ -15,18 +15,19 @@ func _ready():
 		admob.init(isReal, get_instance_ID())
 		loadRewardedVideo()
 		
-	mark_current_hat()
 	open_hats()
+	mark_current_hat()
 	set_coins()
 
 func open_hats():
 	var open_hats = Global.save_data['open_hats']
 	var all_hats = get_node("ScrollContainer/VBoxContainer").get_children()
-	var btn
+	var hat
 	for i in range(open_hats.size()):
-		btn = all_hats[i].get_children()[0]
+		hat = all_hats[i].get_children()
 		if open_hats[i] == 0:
-			btn.set_disabled(true)
+			hat[2].hide()
+			hat[4].show()
 
 func _on_MenuButton_pressed():
 	transition.fade_to("res://scenes/mainscreen.tscn")
@@ -50,39 +51,101 @@ func _on_IndianaBtn_pressed():
 	
 
 func _on_WinterBtn_pressed():
-	unmark_current_hat()
-	options.get_node("winter/Checkmark").show()
-	Global.save("hat","winter")
+	if Global.save_data['open_hats'][1] == 1:
+		unmark_current_hat()
+		options.get_node("winter/Checkmark").show()
+		Global.save("hat","winter")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 2:
+			Global.save('coins',(coins - 2))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[1] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("winter/Label").show()
+			options.get_node("winter/Requirements").hide()
+			set_coins()
 
 
 func _on_CapBtn_pressed():
-	unmark_current_hat()
-	options.get_node("cap/Checkmark").show()
-	Global.save("hat","cap")
-
+	if Global.save_data['open_hats'][2] == 1:
+		unmark_current_hat()
+		options.get_node("cap/Checkmark").show()
+		Global.save("hat","cap")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 3 and Global.save_data['highscore'] >= 10:
+			Global.save('coins',(coins - 3))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[2] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("cap/Label").show()
+			options.get_node("cap/Requirements").hide()
+			set_coins()
 
 func _on_VikingBtn_pressed():
-	unmark_current_hat()
-	options.get_node("viking/Checkmark").show()
-	Global.save("hat","viking")
-
+	if Global.save_data['open_hats'][3] == 1:
+		unmark_current_hat()
+		options.get_node("viking/Checkmark").show()
+		Global.save("hat","viking")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 4 and Global.save_data['highscore'] >= 20:
+			Global.save('coins',(coins - 4))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[3] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("viking/Label").show()
+			options.get_node("viking/Requirements").hide()
+			set_coins()
 
 func _on_SantaBtn_pressed():
-	unmark_current_hat()
-	options.get_node("santa/Checkmark").show()
-	Global.save("hat","santa")
-
+	if Global.save_data['open_hats'][4] == 1:
+		unmark_current_hat()
+		options.get_node("santa/Checkmark").show()
+		Global.save("hat","santa")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 5 and Global.save_data['highscore'] >= 25:
+			Global.save('coins',(coins - 5))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[4] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("santa/Label").show()
+			options.get_node("santa/Requirements").hide()
+			set_coins()
 
 func _on_PirateBtn_pressed():
-	unmark_current_hat()
-	options.get_node("pirate/Checkmark").show()
-	Global.save("hat","pirate")
-
+	if Global.save_data['open_hats'][5] == 1:
+		unmark_current_hat()
+		options.get_node("pirate/Checkmark").show()
+		Global.save("hat","pirate")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 5 and Global.save_data['highscore'] >= 30:
+			Global.save('coins',(coins - 5))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[5] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("pirate/Label").show()
+			options.get_node("pirate/Requirements").hide()
+			set_coins()
 
 func _on_KingBtn_pressed():
-	unmark_current_hat()
-	options.get_node("king/Checkmark").show()
-	Global.save("hat","king")
+	if Global.save_data['open_hats'][6] == 1:
+		unmark_current_hat()
+		options.get_node("king/Checkmark").show()
+		Global.save("hat","king")
+	else:
+		var coins = Global.save_data['coins']
+		if coins >= 7 and Global.save_data['highscore'] >= 50:
+			Global.save('coins',(coins - 7))
+			var open_hats = Global.save_data['open_hats']
+			open_hats[6] = 1
+			Global.save('open_hats',open_hats)
+			options.get_node("king/Label").show()
+			options.get_node("king/Requirements").hide()
+			set_coins()
 
 
 func _on_CoinsButton_pressed():
