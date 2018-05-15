@@ -7,6 +7,7 @@ var adRewardedId = "ca-app-pub-3940256099942544/5224354917"
 #var adBannerId = "ca-app-pub-3940256099942544/6300978111"
 #var adInterId = "ca-app-pub-3455131815008956/6028386143"
 
+
 onready var tryAgainButton = get_node("TryAgain")
 onready var menuButton = get_node("Menu")
 onready var exitButton = get_node("Exit")
@@ -29,7 +30,7 @@ func loadInterstitial():
 
 func start():
 	get_node("HighScore").set_text("HIGHSCORE :  "+str(get_parent().highscore))	
-	show()
+	show()	
 	get_node("SomAngel").play()
 	get_node("AnimationGameOver").play("gameover")
 

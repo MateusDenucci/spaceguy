@@ -43,7 +43,7 @@ var avaible_spaces
 var sprite_player_size = 180
 var score = 0
 var highscore = Global.save_data['highscore']
-var song_is_playing = true
+var song_is_playing
 
 var initialVibration = 0.5
 var vibration = 0
@@ -63,9 +63,13 @@ var offsetYTopTeeth = 300
 
 
 func _ready():
+	song_is_playing = Global.isSoundOn()
+	if song_is_playing:
+		get_node("SamplePlayer").play("jungledrum")	
+	setMuteButtonState()
 	set_hat()
-	get_node("Player/AnimationPlayer").play("move_hat")
-	get_node("SamplePlayer").play("jungledrum")	
+	print(Global.save_data)
+	get_node("Player/AnimationPlayer").play("move_hat")	
 	playerInFearSprite.get_sprite_frames().set_animation_speed("default", 30)	
 	randomize()
 	set_process(true)	
@@ -207,13 +211,14 @@ func random_height():
 	var total_space = 350
 	var height_low
 	var height_top
+	var safeHeight = 280
 	for i in range(0,9):
 		if i == 4:
 			height_low = int(rand_range(50,150))
-			height_top = (total_space - height_low) - 300
+			height_top = (total_space - height_low) - safeHeight
 		else:
-			height_low = int(rand_range((total_space - 300),300))
-			height_top = (total_space - height_low) - 300
+			height_low = int(rand_range((total_space - safeHeight),safeHeight))
+			height_top = (total_space - height_low) - safeHeight
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
@@ -284,6 +289,7 @@ func score_increment():
 	#play()
 	
 func gameover():
+	song_is_playing = Global.isSoundOn()
 	if(song_is_playing):
 		get_node("GameOverScreen/SomDie").play()
 	
@@ -301,14 +307,29 @@ func _on_Tween_tween_complete( object, key ):
 	jogarPlayerAnimCompleta = true
 
 func _on_MuteButton_pressed():
-	if song_is_playing:
-		get_node("SamplePlayer").stop_all()
-		song_is_playing = false
-		get_node("MuteButton").set_normal_texture(load("res://assets/audio_off.png"))
+	song_is_playing = Global.isSoundOn()
+	setMuteButtonState(true)
+		
+func setMuteButtonState(change = false):
+	if change:
+		muteState(!song_is_playing)
 	else:
+		muteState(song_is_playing)
+	
+		
+func muteState(on):
+	if on:
 		get_node("MuteButton").set_normal_texture(load("res://assets/audio.png"))
 		get_node("SamplePlayer").play("jungledrum")
-		song_is_playing = true
+		Global.turnSoundOn()
+		get_node("GameOverScreen/SomDie").set_volume(1)
+		get_node("GameOverScreen/SomAngel").set_volume(1)
+	else:		
+		get_node("SamplePlayer").stop_all()
+		Global.turnSoundOff()
+		get_node("MuteButton").set_normal_texture(load("res://assets/audio_off.png"))
+		get_node("GameOverScreen/SomDie").set_volume(0)
+		get_node("GameOverScreen/SomAngel").set_volume(0)
 
 func _on_TimerOpenMouth_timeout():	
 	if not gameOver:
@@ -317,7 +338,7 @@ func _on_TimerOpenMouth_timeout():
 		playerInFearSprite.show()
 
 func set_hat():
-	var active_hat = "res://assets/hats/"+Global.save_data["hat"]+".png"
+	var active_hat = "res://assets/hats/"+Global.save_data['hat']+".png"
 	var hat = load(active_hat)
 	#var hat = preload("res://assets/hats/default.png")
 	get_node("Player/AnimatedSprite/Hat").set_texture(hat)
