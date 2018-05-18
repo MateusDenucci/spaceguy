@@ -1,45 +1,96 @@
 extends CanvasLayer
 
 var next_path
-var loadingAnimLength  = 1.0
-var loadingAnimSteps   = 16
-var loadingAnimStepLen = loadingAnimLength / loadingAnimSteps
+
+onready var anim = get_node("Anim")
+onready var animLoading = get_node("AnimLoading")
 
 onready var loadingSymbolSprite = get_node("Sprite")
-onready var timerSteps = get_node("TimerSteps")
+
+var loader
+var wait_frames
+var time_max = 100 # msec
+var current_scene
+
+var mostrarLoading
 
 var _thread
 
 func _ready():
-#	loadingAnim()
+	#loadingSymbolSprite.hide()
 	pass
 
 
-func fade_to(path):
-	loadingSymbolSprite.hide()
+func fade_to(path, mostrarLoadingParam=false):
+	#loadingSymbolSprite.hide()
 	#startLoadingAnim()
+	mostrarLoading = mostrarLoadingParam
 	next_path = path
-	get_node("Anim").play("fade")	
+	anim.play("fade")	
 
 func change_scene():	
-	if next_path != null:
-		get_tree().change_scene(next_path)		
-		
-func startLoadingAnim():
-	_thread = Thread.new()
-	_thread.start(self, "loadingAnim")
-
-func loadingAnim(userdata):
-	print("entrou")
-	OS.delay_msec(100)
-	loadingSymbolSprite.show()
-	while true:
-		print("rodando")
-	#	timerSteps.set_wait_time(loadingAnimStepLen)
-	#	timerSteps.start()
-		OS.delay_msec(loadingAnimStepLen*1000)
-		loadingSymbolSprite.set_rot(loadingSymbolSprite.get_rot() + deg2rad(360/loadingAnimSteps))
+	anim.set_speed(0)	
+	if mostrarLoading:
+		loadingSymbolSprite.show()
+		animLoading.play("loading")
+	goto_scene(next_path, mostrarLoading)
+	#if next_path != null:
+	#	get_tree().change_scene(next_path)		
 	
-func _on_TimerSteps_timeout():
-	loadingSymbolSprite.set_rot(loadingSymbolSprite.get_rot() + deg2rad(360/loadingAnimSteps))
-	loadingAnim()
+func goto_scene(path, mostrarLoading):    
+	var root = get_tree().get_root()
+	current_scene = root.get_child(root.get_child_count() -1)
+	
+	loader = ResourceLoader.load_interactive(path)
+	if loader == null: # check for errors
+		show_error()
+		return
+	set_process(true)
+	
+	current_scene.queue_free() # get rid of the old scene
+	
+	wait_frames = 1
+
+func _process(time):
+    if loader == null:
+        # no need to process anymore
+        set_process(false)
+        return
+
+    if wait_frames > 0: # wait for frames to let the "loading" animation to show up
+        wait_frames -= 1
+        return
+
+    var t = OS.get_ticks_msec()
+    while OS.get_ticks_msec() < t + time_max: # use "time_max" to control how much time we block this thread
+
+        # poll your loader
+        var err = loader.poll()
+
+        if err == ERR_FILE_EOF: # load finished
+            var resource = loader.get_resource()
+            loader = null
+            loadingSymbolSprite.hide()
+            anim.set_speed(1)
+            if mostrarLoading:                
+                animLoading.stop()
+            set_new_scene(resource)
+            break
+        elif err == OK:
+            update_progress()
+        else: # error during loading
+            show_error()
+            loader = null
+            break
+
+func update_progress():
+	if mostrarLoading:            
+		var progress = float(loader.get_stage()) / loader.get_stage_count()
+		# or update a progress animation?
+		var len = get_node("AnimLoading").get_current_animation_length()
+		# call this on a paused animation. use "true" as the second parameter to force the animation to update
+		get_node("AnimLoading").seek(progress * len, true)
+
+func set_new_scene(scene_resource):
+    current_scene = scene_resource.instance()
+    get_node("/root").add_child(current_scene)
