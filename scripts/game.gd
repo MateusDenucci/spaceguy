@@ -68,7 +68,7 @@ func _ready():
 		get_node("SamplePlayer").play("jungledrum")	
 	setMuteButtonState()
 	set_hat()
-	print(Global.save_data)
+#	print(Global.save_data)
 	get_node("Player/AnimationPlayer").play("move_hat")	
 	playerInFearSprite.get_sprite_frames().set_animation_speed("default", 30)	
 	randomize()
@@ -82,7 +82,7 @@ func _ready():
 func vibrate():
 	alreadyVibrated = false
 	closeMouth = false
-	initialTimeStartVibrating = initialTimeStartVibrating - score*.03
+	initialTimeStartVibrating = initialTimeStartVibrating - score*.01
 	if initialTimeStartVibrating < initialTimeStartVibratingMin:
 		initialTimeStartVibrating = initialTimeStartVibratingMin
 	timeStartVibrating = initialTimeStartVibrating	
@@ -160,13 +160,13 @@ func _process(delta):
 					
 	
 	elif animMouthClose:
-		print("animClose", topteeth.get_pos(), topteeth.get_pos().y < 300, jogarPlayerAnimCompleta)
+#		print("animClose", topteeth.get_pos(), topteeth.get_pos().y < 300, jogarPlayerAnimCompleta)
 		if jogarPlayerAnimCompleta:		
 			if topteeth.get_pos().y < 300:		
-				print(topteeth.get_pos())		
+#				print(topteeth.get_pos())		
 				topteeth.set_pos(Vector2(topteeth.get_pos().x, topteeth.get_pos().y + 1500*delta))
 			else:
-				print("pos certa", score)
+#				print("pos certa", score)
 				topteeth.set_pos(Vector2(0, 300))		
 				topTeethInPosition = true
 				
@@ -211,14 +211,15 @@ func random_height():
 	var total_space = 350
 	var height_low
 	var height_top
-	var safeHeight = 280
+	var safeHeight = 300
 	for i in range(0,9):
 		if i == 4:
-			height_low = int(rand_range(50,150))
-			height_top = (total_space - height_low) - safeHeight
+			height_low = int(rand_range((total_space - safeHeight),160))
 		else:
 			height_low = int(rand_range((total_space - safeHeight),safeHeight))
-			height_top = (total_space - height_low) - safeHeight
+		height_top = (total_space - height_low) - safeHeight
+		if height_top > 0:
+			print(height_top)
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
