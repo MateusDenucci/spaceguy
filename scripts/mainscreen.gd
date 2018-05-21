@@ -5,8 +5,6 @@ onready var control = get_node("Control")
 onready var timer = get_node("Timer")
 onready var button = get_node("Control/TextureButton")
 
-onready var spTeste = get_node("Sprite2")
-onready var animTeste = get_node("Anim")
 
 func _ready():	
 	button.set("disabled", false)
@@ -19,6 +17,7 @@ func _on_TextureButton_pressed():
 	#animTeste.play("teste")
 	#var s = ResourceLoader.load_interactive((path))
 	#Global.goto_scene("res://scenes/game.tscn")
+
 
 func showScene():
 	sprite.show()

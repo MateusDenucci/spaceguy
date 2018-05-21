@@ -37,7 +37,7 @@ func change_scene():
 	#if next_path != null:
 	#	get_tree().change_scene(next_path)		
 	
-func goto_scene(path, mostrarLoading):    
+func goto_scene(path, mostrarLoading):  
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
 	
@@ -92,5 +92,5 @@ func update_progress():
 		get_node("AnimLoading").seek(progress * len, true)
 
 func set_new_scene(scene_resource):
-    current_scene = scene_resource.instance()
-    get_node("/root").add_child(current_scene)
+	current_scene = scene_resource.instance()
+	get_node("/root").add_child(current_scene)
