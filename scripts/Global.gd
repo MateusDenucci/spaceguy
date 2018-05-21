@@ -12,6 +12,8 @@ var save_data = {
 	'open_hats': [1,0,0,0,0,0,0]
 }
 
+var pathTelaJogo = "res://scenes/game.tscn"
+
 func _ready():
 #	var dir = Directory.new()
 #	dir.remove(save_path)
