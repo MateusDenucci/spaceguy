@@ -29,7 +29,6 @@ margin/bottom = 40.0
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 
-editor/display_folded = true
 rect/scale = Vector2( 0.6, 0.6 )
 focus/ignore_mouse = false
 focus/stop_mouse = true

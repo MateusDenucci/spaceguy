@@ -5,7 +5,6 @@ onready var control = get_node("Control")
 onready var timer = get_node("Timer")
 onready var button = get_node("Control/TextureButton")
 
-
 func _ready():	
 	button.set("disabled", false)
 	showScene()

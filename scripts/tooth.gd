@@ -11,9 +11,10 @@ func _ready():
 
 func _on_Area2D_body_enter( body ):
 #	print("col")
-	if(body.get_name() == "Player" and !get_node("/root/Game/Player").morto and get_node("/root/Game/Player").podeSerMorto):
-		get_node("/root/Game").gameover()
-		get_node("/root/Game/Player").morto = true
+	#if(body.get_name() == "Player" and !get_node("/root/Game/Player").morto and get_node("/root/Game/Player").podeSerMorto):
+	if(body.get_name() == "Player" and !get_node("/root").get_children()[-1].get_node("Player").morto and get_node("/root").get_children()[-1].get_node("Player").podeSerMorto):
+		get_node("/root").get_children()[-1].gameover()
+		get_node("/root").get_children()[-1].get_node("Player").morto = true
 		
 #	else:
 #		if rayCast.is_colliding():
