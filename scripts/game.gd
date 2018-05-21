@@ -36,7 +36,7 @@ var gameOver
 var vel
 var initialVel = 100
 
-var initialTimeStartVibratingMin = .2
+var initialTimeStartVibratingMin = .3
 
 var goDown = false
 var avaible_spaces
@@ -75,7 +75,7 @@ func _ready():
 	set_process(true)	
 	topteeth.set_pos(Vector2(cos(rad2deg(vibration))*2, offsetYTopTeeth))
 	avaible_spaces = get_avaible_spaces()
-	random_height()	
+	random_height()
 	play()
 
 
@@ -253,13 +253,18 @@ func stop_go_down():
 func get_avaible_spaces():
 	var spaces
 	if score <= 10:
+		spaces = int(rand_range(3,5))
+	elif score > 10 and score <= 25:
+		spaces = int(rand_range(3,4))
+	elif score > 25 and score <= 40:
 		spaces = int(rand_range(2,4))
-	elif score > 10 and score <= 20:
+	elif score > 40 and score <= 50:
+		spaces = int(rand_range(2,3))
+	elif score > 50 and score <= 70:
 		spaces = int(rand_range(1,3))
-	elif score > 20 and score <= 30:
-		spaces = int(rand_range(1,2))
 	else:
-		spaces = 1
+		spaces = int(rand_range(1,2))
+
 	return spaces
 	
 func play():
