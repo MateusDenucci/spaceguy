@@ -43,8 +43,14 @@ func _on_TryAgain_pressed():
 	var random = int(rand_range(0,4))
 	if(random == 2):
 		showInterstitialAd()
-	get_tree().reload_current_scene()
-			
+	#var cur = get_tree().get_current_scene()
+	#print(get_tree().get_current_scene().get_name())
+	#get_tree().reload_current_scene()
+	#get_node("/root").get_children()[-1]
+	#get_node("/root").add_child(cur)
+	#cur.queue_free()
+	transition.reloadGame()
+					
 func showInterstitialAd():
 	if admob != null:
 		admob.showInterstitial()

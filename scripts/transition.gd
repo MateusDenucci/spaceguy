@@ -6,24 +6,29 @@ onready var anim = get_node("Anim")
 onready var animLoading = get_node("AnimLoading")
 
 onready var loadingSymbolSprite = get_node("Sprite")
+onready var barra = get_node("Barra")
+onready var marc = get_node("Barra/Marcador")
+onready var logo = get_node("Logo")
 
 var loader
 var wait_frames
 var time_max = 100 # msec
 var current_scene
 
+var telaJogo
+
 var mostrarLoading
 
 var _thread
 
 func _ready():
-	#loadingSymbolSprite.hide()
 	pass
 
 
 func fade_to(path, mostrarLoadingParam=false):
 	#loadingSymbolSprite.hide()
 	#startLoadingAnim()
+	marc.set_region_rect(Rect2(0, 0, 0, 23))
 	mostrarLoading = mostrarLoadingParam
 	next_path = path
 	anim.play("fade")	
@@ -31,8 +36,9 @@ func fade_to(path, mostrarLoadingParam=false):
 func change_scene():	
 	anim.set_speed(0)	
 	if mostrarLoading:
-		loadingSymbolSprite.show()
-		animLoading.play("loading")
+		barra.show()
+		#loadingSymbolSprite.show()
+		#animLoading.play("loading")
 	goto_scene(next_path, mostrarLoading)
 	#if next_path != null:
 	#	get_tree().change_scene(next_path)		
@@ -70,10 +76,11 @@ func _process(time):
         if err == ERR_FILE_EOF: # load finished
             var resource = loader.get_resource()
             loader = null
-            loadingSymbolSprite.hide()
+            barra.hide()
+            #loadingSymbolSprite.hide()
             anim.set_speed(1)
-            if mostrarLoading:                
-                animLoading.stop()
+            #if mostrarLoading:                
+                #animLoading.stop()
             set_new_scene(resource)
             break
         elif err == OK:
@@ -86,11 +93,22 @@ func _process(time):
 func update_progress():
 	if mostrarLoading:            
 		var progress = float(loader.get_stage()) / loader.get_stage_count()
+		
+		marc.set_region_rect(Rect2(0, 0, progress*188, 23))
+		marc.set_pos(Vector2(-(1-progress)*188/2, 0))
+		
 		# or update a progress animation?
-		var len = get_node("AnimLoading").get_current_animation_length()
+		#var len = get_node("AnimLoading").get_current_animation_length()
 		# call this on a paused animation. use "true" as the second parameter to force the animation to update
-		get_node("AnimLoading").seek(progress * len, true)
+		#get_node("AnimLoading").seek(progress * len, true)
 
 func set_new_scene(scene_resource):
-	current_scene = scene_resource.instance()
-	get_node("/root").add_child(current_scene)
+    current_scene = scene_resource.instance()
+    telaJogo = scene_resource
+    get_node("/root").add_child(current_scene)
+    #print(get_node("/root").get_children()[-1])
+    #get_tree().set_current_scene(get_node("/root").get_children()[-1])
+
+func reloadGame():
+	get_node("/root").get_children()[-1].queue_free()
+	get_node("/root").add_child(telaJogo.instance())
