@@ -218,8 +218,6 @@ func random_height():
 		else:
 			height_low = int(rand_range((total_space - safeHeight),safeHeight))
 		height_top = (total_space - height_low) - safeHeight
-		if height_top > 0:
-			print(height_top)
 		get_node("LowerTeeth/LowTooth"+str(i)).set_pos(Vector2(get_node("LowerTeeth/LowTooth"+str(i)).get_pos().x,(-1*height_low)))
 		get_node("TopTeeth/TopTooth"+str(i)).set_pos(Vector2(get_node("TopTeeth/TopTooth"+str(i)).get_pos().x,height_top))
 
