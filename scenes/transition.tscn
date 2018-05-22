@@ -139,6 +139,7 @@ texture = ExtResource( 4 )
 
 visibility/visible = false
 transform/pos = Vector2( 360, 911.138 )
+transform/scale = Vector2( 2, 3 )
 
 [node name="Marcador" type="Sprite" parent="Barra"]
 

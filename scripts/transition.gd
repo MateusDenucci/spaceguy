@@ -15,7 +15,9 @@ var wait_frames
 var time_max = 100 # msec
 var current_scene
 
-var telaJogo
+var telaJogo = null
+
+var indoProJogo = false
 
 var mostrarLoading
 
@@ -31,11 +33,17 @@ func fade_to(path, mostrarLoadingParam=false):
 	marc.set_region_rect(Rect2(0, 0, 0, 23))
 	mostrarLoading = mostrarLoadingParam
 	next_path = path
+	indoProJogo =  path == Global.pathTelaJogo
+#	print(indoProJogo)
+	if indoProJogo:
+		logo.show()
+	else:
+		logo.hide()
 	anim.play("fade")	
 
 func change_scene():	
 	anim.set_speed(0)	
-	if mostrarLoading:
+	if mostrarLoading and telaJogo == null:
 		barra.show()
 		#loadingSymbolSprite.show()
 		#animLoading.play("loading")
@@ -45,17 +53,22 @@ func change_scene():
 	
 func goto_scene(path, mostrarLoading):  
 	var root = get_tree().get_root()
-	current_scene = root.get_child(root.get_child_count() -1)
-	
-	loader = ResourceLoader.load_interactive(path)
-	if loader == null: # check for errors
-		show_error()
-		return
-	set_process(true)
-	
+		
+	if indoProJogo and telaJogo != null:
+		set_new_scene(telaJogo)
+		anim.set_speed(1)
+		current_scene = root.get_child(root.get_child_count() -2)
+	else:	
+		loader = ResourceLoader.load_interactive(path)
+		if loader == null: # check for errors
+			show_error()
+			return
+		set_process(true)		
+		wait_frames = 1
+		current_scene = root.get_child(root.get_child_count() -1)
+		
+#	print(current_scene.get_name())
 	current_scene.queue_free() # get rid of the old scene
-	
-	wait_frames = 1
 
 func _process(time):
     if loader == null:
@@ -104,7 +117,8 @@ func update_progress():
 
 func set_new_scene(scene_resource):
     current_scene = scene_resource.instance()
-    telaJogo = scene_resource
+    if indoProJogo:
+    	telaJogo = scene_resource
     get_node("/root").add_child(current_scene)
     #print(get_node("/root").get_children()[-1])
     #get_tree().set_current_scene(get_node("/root").get_children()[-1])
