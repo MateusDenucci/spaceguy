@@ -19,6 +19,7 @@ func _ready():
 	mark_current_hat()
 	set_coins()
 
+
 func open_hats():
 	var open_hats = Global.save_data['open_hats']
 	var all_hats = get_node("ScrollContainer/VBoxContainer").get_children()
@@ -171,3 +172,7 @@ func set_coins():
 func _on_GetCoins_pressed():
 	if admob != null:
 		admob.showRewardedVideo()
+
+func _on_StoreButton_pressed():
+	get_node("ScrollContainer").show()
+	get_node("CoinsScreen").hide()
