@@ -258,10 +258,9 @@ func get_avaible_spaces():
 		spaces = int(rand_range(2,4))
 	elif score > 40 and score <= 50:
 		spaces = int(rand_range(2,3))
-	elif score > 50 and score <= 70:
+	elif score > 50:
 		spaces = int(rand_range(1,3))
-	else:
-		spaces = int(rand_range(1,2))
+
 
 	return spaces
 	

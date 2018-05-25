@@ -107,7 +107,7 @@ func _on_SantaBtn_pressed():
 		Global.save("hat","santa")
 	else:
 		var coins = Global.save_data['coins']
-		if coins >= 5 and Global.save_data['highscore'] >= 25:
+		if coins >= 5 and Global.save_data['highscore'] >= 35:
 			Global.save('coins',(coins - 5))
 			var open_hats = Global.save_data['open_hats']
 			open_hats[4] = 1
@@ -123,7 +123,7 @@ func _on_PirateBtn_pressed():
 		Global.save("hat","pirate")
 	else:
 		var coins = Global.save_data['coins']
-		if coins >= 5 and Global.save_data['highscore'] >= 30:
+		if coins >= 5 and Global.save_data['highscore'] >= 50:
 			Global.save('coins',(coins - 5))
 			var open_hats = Global.save_data['open_hats']
 			open_hats[5] = 1
@@ -139,7 +139,7 @@ func _on_KingBtn_pressed():
 		Global.save("hat","king")
 	else:
 		var coins = Global.save_data['coins']
-		if coins >= 7 and Global.save_data['highscore'] >= 50:
+		if coins >= 7 and Global.save_data['highscore'] >= 80:
 			Global.save('coins',(coins - 7))
 			var open_hats = Global.save_data['open_hats']
 			open_hats[6] = 1
