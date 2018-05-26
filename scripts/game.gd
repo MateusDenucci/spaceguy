@@ -82,7 +82,9 @@ func _ready():
 func vibrate():
 	alreadyVibrated = false
 	closeMouth = false
-	initialTimeStartVibrating = initialTimeStartVibrating - score*.01
+	#initialTimeStartVibrating = initialTimeStartVibrating - score*.01
+	initialTimeStartVibrating = 2 - log(sqrt(score+1))
+	print(initialTimeStartVibrating)
 	if initialTimeStartVibrating < initialTimeStartVibratingMin:
 		initialTimeStartVibrating = initialTimeStartVibratingMin
 	timeStartVibrating = initialTimeStartVibrating	
