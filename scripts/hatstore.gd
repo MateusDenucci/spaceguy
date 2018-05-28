@@ -29,7 +29,7 @@ func _input(event):
 	if(event.type == InputEvent.SCREEN_TOUCH):
 		ultimaPosMouse = event.pos
 	if(event.type == InputEvent.SCREEN_DRAG):
-		var posContainer = Vector2(scrollContainer.get_pos().x, scrollContainer.get_pos().y + (event.pos.y - ultimaPosMouse.y)/20)
+		var posContainer = Vector2(scrollContainer.get_pos().x, scrollContainer.get_pos().y + (event.pos.y - ultimaPosMouse.y)/12)
 		if posContainer.y > posInicialContainer.y:
 			posContainer = posInicialContainer
 		elif posContainer.y < -450:
