@@ -87,7 +87,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 170.0
 margin/right = 715.0
-margin/bottom = 1250.0
+margin/bottom = 1870.0
 scroll/horizontal = false
 scroll/vertical = true
 
@@ -166,7 +166,6 @@ texture = ExtResource( 7 )
 
 [node name="winter" type="Control" parent="ScrollContainer/VBoxContainer"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1168,7 +1167,7 @@ transform/pos = Vector2( 680.702, 51.6727 )
 transform/scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 9
+frame = 1
 playing = true
 
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/default/IndianaBtn" to="." method="_on_IndianaBtn_pressed"]

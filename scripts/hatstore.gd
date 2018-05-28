@@ -7,18 +7,35 @@ var adRewardedId = "ca-app-pub-3940256099942544/5224354917" # [There is no testi
 onready var options = get_node("ScrollContainer/VBoxContainer")
 var active_hat = Global.save_data["hat"]
 
+var ultimaPosMouse = Vector2()
+
+onready var scrollContainer = get_node("ScrollContainer")
+var posInicialContainer
 
 func _ready():
+	posInicialContainer = scrollContainer.get_pos()
 	get_node("CoinsScreen/GetCoins").set_disabled(Global.disable_btn)
 	if(Globals.has_singleton("AdMob")):
 		admob = Globals.get_singleton("AdMob")
 		admob.init(isReal, get_instance_ID())
 		loadRewardedVideo()
+	set_process_input(true)
 		
 	open_hats()
 	mark_current_hat()
 	set_coins()
 
+func _input(event):
+	if(event.type == InputEvent.SCREEN_TOUCH):
+		ultimaPosMouse = event.pos
+	if(event.type == InputEvent.SCREEN_DRAG):
+		var posContainer = Vector2(scrollContainer.get_pos().x, scrollContainer.get_pos().y + (event.pos.y - ultimaPosMouse.y)/20)
+		if posContainer.y > posInicialContainer.y:
+			posContainer = posInicialContainer
+		elif posContainer.y < -450:
+			posContainer.y = -450
+		print(posContainer)
+		scrollContainer.set_pos(posContainer)
 
 func open_hats():
 	var open_hats = Global.save_data['open_hats']
