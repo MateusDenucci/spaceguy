@@ -274,7 +274,7 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 6
+frame = 1
 playing = true
 
 [node name="cap" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -406,7 +406,7 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 6
+frame = 1
 playing = true
 
 [node name="viking" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -538,7 +538,6 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 5
 playing = true
 
 [node name="santa" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -670,7 +669,7 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 7
 playing = true
 
 [node name="pirate" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -803,7 +802,7 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 7
 playing = true
 
 [node name="king" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -936,7 +935,7 @@ transform/pos = Vector2( 640.902, 61.0242 )
 transform/scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 7
 playing = true
 
 [node name="garbage" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -1158,7 +1157,7 @@ transform/pos = Vector2( 680.702, 51.6727 )
 transform/scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 4
+frame = 5
 playing = true
 
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/default/IndianaBtn" to="." method="_on_IndianaBtn_pressed"]

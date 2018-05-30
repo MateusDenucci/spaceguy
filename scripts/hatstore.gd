@@ -36,6 +36,7 @@ func _input(event):
 			posContainer.y = -450
 		print(posContainer)
 		scrollContainer.set_pos(posContainer)
+		ultimaPosMouse = event.pos
 
 func open_hats():
 	var open_hats = Global.save_data['open_hats']
